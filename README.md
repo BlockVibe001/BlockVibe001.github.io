@@ -1,7 +1,7 @@
 # 星云启动器 · 官网静态页
 
 纯静态展示站，不存游戏包，不提供上传或后台。  
-线上地址（开启 GitHub Pages 后）：`https://BlockVibe001.github.io/`
+线上地址：`https://BlockVibe001.github.io/`
 
 ## 文件
 
