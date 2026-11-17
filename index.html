@@ -689,8 +689,8 @@ h1 em { color: inherit; background: none; }
 /* Hero 产品窗 */
 .hero-visual { min-height: 580px; }
 .visual-stage {
-  width: min(100%, 566px);
-  aspect-ratio: 1 / 1;
+  width: min(100%, 620px);
+  aspect-ratio: 620 / 480;
   animation: float 10s ease-in-out infinite;
 }
 .aurora-orb {
@@ -740,6 +740,24 @@ h1 em { color: inherit; background: none; }
   pointer-events: none;
   background: linear-gradient(118deg, rgba(255, 188, 206, .18), transparent 34%, transparent 66%, rgba(133, 184, 255, .15));
 }
+.product-shot {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 9px;
+  border-radius: 28px;
+  background: linear-gradient(155deg, rgba(255, 255, 255, .24), rgba(255, 255, 255, .06));
+  border: 1px solid rgba(255, 255, 255, .46);
+  box-shadow:
+    0 45px 110px -30px rgba(0, 0, 0, .95),
+    0 0 80px -18px rgba(255, 170, 200, .22),
+    0 0 120px -26px rgba(130, 180, 255, .28),
+    inset 0 1px 0 rgba(255, 255, 255, .4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transform: rotate(-1.2deg);
+}
+.product-shot img { display: block; width: 100%; height: auto; border-radius: 20px; }
 .app-top {
   position: relative;
   height: 52px;
@@ -941,6 +959,8 @@ h1 em { color: inherit; background: none; }
   .hero-visual { min-height: 352px; }
   .visual-stage { width: 100%; }
   .app-window { width: 100%; border-radius: 22px; transform: none; }
+  .product-shot { padding: 5px; border-radius: 22px; transform: none; }
+  .product-shot img { border-radius: 17px; }
   .app-top { height: 48px; padding: 0 12px; }
   .app-body { grid-template-columns: 1fr; min-height: 0; }
   .app-side { display: none; }
@@ -1029,50 +1049,8 @@ h1 em { color: inherit; background: none; }
           <div class="aurora-orb"></div>
           <div class="orbit-ring"></div>
           <div class="orbit-ring r2"></div>
-          <div class="app-window">
-            <div class="app-top">
-              <span class="dots"><i></i><i></i><i></i></span>
-              <span class="app-title"><img src="assets/icon-32.png" alt="">星云启动器</span>
-              <span class="app-top-meta">1.0.68</span>
-            </div>
-            <div class="app-body">
-              <div class="app-side">
-                <div class="side-item active"><span class="side-dot"></span>首页</div>
-                <div class="side-item"><span class="side-dot"></span>版本</div>
-                <div class="side-item"><span class="side-dot"></span>模组</div>
-                <div class="side-item"><span class="side-dot"></span>下载</div>
-                <div class="side-item"><span class="side-dot"></span>联机</div>
-                <div class="side-item"><span class="side-dot"></span>设置</div>
-              </div>
-              <div class="app-main">
-                <div class="app-greeting">下午好，Steve</div>
-                <div class="app-sub">上次启动 1.21.4 · Fabric</div>
-                <div class="version-list">
-                  <div class="version-row active">
-                    <span class="version-ico">21</span>
-                    <div><b>1.21.4</b><span>Fabric · 24 个模组</span></div>
-                    <span class="version-tag">最近</span>
-                  </div>
-                  <div class="version-row">
-                    <span class="version-ico" style="background:linear-gradient(145deg,#ffd6a8,#ffb4c4)">20</span>
-                    <div><b>1.20.1</b><span>Forge · 18 个模组</span></div>
-                    <span class="version-tag">稳定</span>
-                  </div>
-                  <div class="version-row">
-                    <span class="version-ico" style="background:linear-gradient(145deg,#c9b8ff,#a9d4ff)">18</span>
-                    <div><b>1.21.8</b><span>NeoForge · 纯净</span></div>
-                    <span class="version-tag">新建</span>
-                  </div>
-                </div>
-                <div class="launch-card">
-                  <span><b>准备就绪</b>3 个 Java 运行时</span>
-                  <span class="launch-btn">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                    启动游戏
-                  </span>
-                </div>
-              </div>
-            </div>
+          <div class="product-shot">
+            <img src="assets/launcher-home.jpg" alt="星云启动器真实主界面">
           </div>
           <div class="float-chip chip-java"><i></i>Java 25 · 已就绪</div>
           <div class="float-chip chip-sync"><i></i>配置留在本机</div>
