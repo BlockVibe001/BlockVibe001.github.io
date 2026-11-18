@@ -473,9 +473,13 @@ h1 em { font-style: normal; color: var(--cyan); }
 .log-list::before { content: ""; position: absolute; left: 5px; top: 10px; bottom: 10px; width: 1px; background: linear-gradient(180deg, rgba(169,212,255,.34), rgba(169,212,255,.06)); }
 .release { position: relative; padding: 0 0 34px; }
 .release:last-child { padding-bottom: 0; }
+.release.is-collapsed { padding-bottom: 22px; }
+.release.is-collapsed ul { display: none; }
 .release-dot { position: absolute; left: -24px; top: 7px; width: 11px; height: 11px; border-radius: 50%; border: 1px solid rgba(169,212,255,.5); background: #08121c; box-shadow: 0 0 0 4px rgba(169,212,255,.035); }
 .release-dot.current { background: var(--cyan); box-shadow: 0 0 18px rgba(169,212,255,.7); }
 .release-head { display: flex; align-items: center; gap: 11px; flex-wrap: wrap; }
+.release-toggle { margin-left: auto; padding: 2px 0; border: 0; background: none; color: rgba(150,178,202,.62); font-family: inherit; font-size: 10.5px; cursor: pointer; }
+.release-toggle:hover { color: var(--cyan); }
 .release-version { font-family: "Space Grotesk", monospace; font-size: 18px; letter-spacing: -.02em; color: #e6f8ff; }
 .release-date { font-family: "Space Grotesk", monospace; font-size: 10px; color: rgba(150,178,202,.55); letter-spacing: .06em; }
 .release-channel { padding: 2px 7px; border-radius: 5px; border: 1px solid rgba(169,212,255,.2); color: rgba(190,236,255,.8); font-size: 9px; }
@@ -1293,11 +1297,25 @@ h1 em { color: inherit; background: none; }
         '<span class="release-dot' + (i === 0 ? ' current' : '') + '"></span>' +
         '<div class="release-head"><span class="release-version">v' + esc(e.version) + '</span>' +
         '<span class="release-channel">' + esc(e.channel || '更新') + '</span>' +
-        '<span class="release-date">' + esc(e.date || '') + '</span></div>' +
+        '<span class="release-date">' + esc(e.date || '') + '</span>' +
+        '<button class="release-toggle" type="button" aria-expanded="false">展开</button></div>' +
         '<h3>' + esc(e.title || '更新记录') + '</h3>' +
         '<ul>' + notes.map(function (n) { return '<li>' + esc(n) + '</li>'; }).join('') + '</ul>' +
         '</article>';
     }).join('');
+    list.querySelectorAll('.release').forEach(function (release, i) {
+      var toggle = release.querySelector('.release-toggle');
+      if (!toggle) return;
+      function setOpen(open) {
+        release.classList.toggle('is-collapsed', !open);
+        toggle.textContent = open ? '收起' : '展开';
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      setOpen(i === 0);
+      toggle.addEventListener('click', function () {
+        setOpen(release.classList.contains('is-collapsed'));
+      });
+    });
     if (status) status.textContent = '已读取 ' + entries.length + ' 条记录';
     return true;
   }
