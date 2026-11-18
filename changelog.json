@@ -3,6 +3,18 @@
   "updated": "2026-11-18",
   "entries": [
     {
+      "version": "1.0.9",
+      "date": "2026-11-18",
+      "channel": "Android",
+      "title": "微软正版账号登录",
+      "notes": [
+        "账号按钮新增微软设备码登录，登录后同步玩家名、正版头像、皮肤和披风。",
+        "登录只读取公开角色资料，不保存微软密码、access token 或 refresh token，也不会把令牌写进 Pojav。",
+        "Java 游戏启动仍由 PojavLauncher 自己完成正版登录；星云负责账号资料与入口。",
+        "手机版「已移除」列表划掉「正版账号登录」。"
+      ]
+    },
+    {
       "version": "1.0.8",
       "date": "2026-11-18",
       "channel": "Android",
