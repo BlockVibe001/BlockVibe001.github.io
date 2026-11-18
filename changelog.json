@@ -3,6 +3,18 @@
   "updated": "2026-11-18",
   "entries": [
     {
+      "version": "1.0.4",
+      "date": "2026-11-18",
+      "channel": "Android",
+      "title": "手机版新增联机大厅",
+      "notes": [
+        "底部 Tab 扩展为 6 个，新增「联机」，手机版不再阉割联机入口。",
+        "Java 版与基岩版服务器分开筛选，内置 Hypixel、Hive、CubeCraft 等热门目录。",
+        "支持服务器收藏、删除、地址复制、进服引导和 mcsrvstat 在线状态查询。",
+        "支持手动添加 host 或 host:端口，回车即可收藏；同 Wi-Fi 联机步骤内置在页面里。"
+      ]
+    },
+    {
       "version": "1.0.3",
       "date": "2026-11-18",
       "channel": "Android",
