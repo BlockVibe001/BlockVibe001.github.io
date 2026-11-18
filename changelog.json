@@ -16,16 +16,6 @@
       ]
     },
     {
-      "version": "1.0.72",
-      "date": "2026-11-18",
-      "channel": "正式版",
-      "title": "Windows 最新安装包",
-      "notes": [
-        "最新 Windows 安装包已更新到 1.0.72，具体改动与资产以 GitHub Releases 页面为准。",
-        "安装版与免安装版仍在同一 Releases 页面提供。"
-      ]
-    },
-    {
       "version": "1.0.3",
       "date": "2026-11-18",
       "channel": "Android",
