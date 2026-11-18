@@ -441,6 +441,7 @@ h1 em { font-style: normal; color: var(--cyan); }
 .material-swatch i:nth-child(4) { background: linear-gradient(145deg, rgba(255,190,210,.16), rgba(255,255,255,.05)); }
 
 /* ========== 下载 ========== */
+.section { scroll-margin-top: 96px; }
 .download-shell { display: grid; grid-template-columns: 1.15fr .85fr; border-radius: 28px; overflow: hidden; }
 .download-main { padding: 42px; border-right: 1px solid rgba(160,210,255,.12); background:
   radial-gradient(90% 100% at 0% 0%, rgba(92, 202, 238, .12), transparent 62%),
@@ -461,6 +462,15 @@ h1 em { font-style: normal; color: var(--cyan); }
 .github-box { margin-top: 4px; padding: 13px 14px; border-radius: 12px; border: 1px solid rgba(160,210,255,.12); background: rgba(4,8,15,.35); }
 .github-box b { display: block; font-size: 11px; color: #d3e8f8; font-weight: 500; }
 .github-box span { display: block; margin-top: 2px; font-size: 10px; color: rgba(150,178,202,.6); }
+.android-shell { margin-top: 18px; }
+.android-shell .download-main {
+  background:
+    radial-gradient(90% 100% at 0% 0%, rgba(113, 224, 183, .30), transparent 62%),
+    linear-gradient(150deg, rgba(255, 255, 255, .95), rgba(233, 247, 243, .9));
+}
+.android-shell .version-tag.android-tag { color: #3c7f65; border-color: rgba(80, 170, 135, .3); background: rgba(113,224,183,.16); }
+.android-shell .download-points svg { color: #3f9c7a; }
+.android-shell .download-points li { color: #55627a; }
 
 /* ========== 更新日志 ========== */
 .changelog-shell { display: grid; grid-template-columns: .78fr 1.22fr; gap: 52px; align-items: start; }
@@ -1030,7 +1040,7 @@ h1 em { color: inherit; background: none; }
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <div class="eyebrow">MINECRAFT / WINDOWS</div>
+        <div class="eyebrow">MINECRAFT / WINDOWS · ANDROID</div>
         <h1>把方块世界，<span class="line-two">装进一颗<em>星云</em>。</span></h1>
         <p class="hero-lede">版本、模组、联机、语音助手，收进同一块玻璃面板。没有云账号绑架，没有满屏广告，只有你和方块世界。</p>
         <div class="hero-actions">
@@ -1040,11 +1050,11 @@ h1 em { color: inherit; background: none; }
           </a>
           <a class="btn btn-quiet" href="#changelog">查看更新日志</a>
         </div>
-        <div class="hero-note">安装包由 GitHub Releases 提供，本站不存任何安装文件。</div>
+        <div class="hero-note">Windows 包由 GitHub Releases 提供；Android 包为本站直链，不经过网盘。</div>
         <div class="hero-meta">
           <div class="meta-item"><span class="meta-label">VERSION</span><span class="meta-value">v1.0.68</span></div>
           <div class="meta-item"><span class="meta-label">PLATFORM</span><span class="meta-value">Windows 10 / 11</span></div>
-          <div class="meta-item"><span class="meta-label">DATA</span><span class="meta-value">配置留在本机</span></div>
+          <div class="meta-item"><span class="meta-label">ANDROID</span><span class="meta-value">v1.0.3</span></div>
         </div>
       </div>
 
@@ -1122,12 +1132,12 @@ h1 em { color: inherit; background: none; }
   <section class="section" id="download">
     <div class="wrap">
       <div class="section-head">
-        <h2>从 Releases 拿走它。</h2>
-        <p>本站只做展示与跳转，不托管安装包。下载、历史版本和校验信息都在 GitHub Releases。</p>
+        <h2>从 Releases 或直链拿走它。</h2>
+        <p>Windows 安装包走 GitHub Releases；Android APK 由本站提供直链，不经过网盘。</p>
       </div>
       <div class="download-shell glass">
         <div class="download-main">
-          <div class="version-line"><span class="version-big">v1.0.68</span><span class="version-tag">CURRENT</span></div>
+          <div class="version-line"><span class="version-big">v1.0.68</span><span class="version-tag">WINDOWS</span></div>
           <h2>星云启动器<br>Windows 版</h2>
           <p>安装版与免安装版都放在同一个 Releases 页面。页面会列出当前版本、更新说明和全部资产，按你的习惯选。</p>
           <ul class="download-points">
@@ -1147,6 +1157,28 @@ h1 em { color: inherit; background: none; }
           </a>
           <div class="platform-note"><span>Windows 10 / 11 · x64</span><span>安装版 / 免安装版</span></div>
           <div class="github-box"><b>找不到合适的资产？</b><span>在 Releases 页面展开 Assets，选择带 Setup 的安装版，或直接下载 exe 免安装运行。</span></div>
+        </div>
+      </div>
+
+      <div class="download-shell glass android-shell">
+        <div class="download-main">
+          <div class="version-line"><span class="version-big">v1.0.3</span><span class="version-tag android-tag">ANDROID</span></div>
+          <h2>星云启动器<br>Android 版</h2>
+          <p>手机横屏版：顶部常驻启动键，底部五 Tab 悬浮导航。查基岩版、拿 APK、导入 Add-On，一屏能走完。</p>
+          <ul class="download-points">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m5 12 4 4L19 6"/></svg><span>直接下载 APK，不跳网盘、不需要提取码。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m5 12 4 4L19 6"/></svg><span>支持 Android 7.0 及以上；横屏锁定，适配刘海和挖孔屏。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m5 12 4 4L19 6"/></svg><span>首次安装需允许浏览器「安装未知来源应用」，游戏本体仍需自行准备。</span></li>
+          </ul>
+        </div>
+        <div class="download-side">
+          <a class="btn btn-primary" href="downloads/nebula-android-1.0.3.apk" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M5 19h14"/></svg>
+            下载 Android APK
+          </a>
+          <a class="btn btn-quiet" href="#changelog">查看手机版更新</a>
+          <div class="platform-note"><span>Android 7.0+</span><span>横屏 · 6.9 MB</span></div>
+          <div class="github-box"><b>装不上怎么办？</b><span>先在系统设置里允许当前浏览器安装应用；部分品牌机还会要求关闭「纯净模式」。</span></div>
         </div>
       </div>
     </div>
@@ -1213,7 +1245,7 @@ h1 em { color: inherit; background: none; }
           <div><b>星云启动器</b><span>一个把方块世界收进玻璃面板的本地启动器。</span></div>
         </div>
       </div>
-      <p class="disclaimer"><strong>免责声明</strong><br>本站是星云启动器的展示页，不提供 Minecraft 游戏本体、模组、整合包或安装包下载，也不接受任何文件上传。与 Mojang Studios、Microsoft 无隶属或授权关系；Minecraft 及相关商标归其权利人所有。第三方启动器名称与商标归各自作者所有，跳转链接指向其官方页面。</p>
+      <p class="disclaimer"><strong>免责声明</strong><br>本站是星云启动器的展示页，仅提供本启动器的 Windows / Android 安装包入口；不提供 Minecraft 游戏本体、模组、整合包下载，也不接受任何文件上传。与 Mojang Studios、Microsoft 无隶属或授权关系；Minecraft 及相关商标归其权利人所有。第三方启动器名称与商标归各自作者所有，跳转链接指向其官方页面。</p>
     </div>
     <div class="foot-meta"><span>© <span id="year">2026</span> NEBULA LAUNCHER</span><span>STATIC · GITHUB PAGES READY</span></div>
   </div>
@@ -1263,18 +1295,17 @@ h1 em { color: inherit; background: none; }
 /* ========== 更新日志：读 changelog.json，失败则用内置记录 ========== */
 (function () {
   var FALLBACK = {
-    updated: '2026-11-17',
+    updated: '2026-11-18',
     entries: [{
-      version: '1.0.68',
-      date: '2026-11-17',
-      channel: '正式版',
-      title: '语音、插件与更新链路的整批修复',
+      version: '1.0.3',
+      date: '2026-11-18',
+      channel: 'Android',
+      title: '手机版横屏双栏布局与悬浮 Dock',
       notes: [
-        '语音输入与朗读链路补齐，TTS 复用连接并预热，减少首句等待。',
-        '插件运行器随安装包分发，兼容多种导出写法，新增自助创建入口。',
-        '更新页改为单地址自动切换，日志合并 Releases 与 CHANGELOG。',
-        '修复资源中心 Modrinth 分页、基岩版版本列表与 Horizon 版本读取。',
-        '灵动通知贴顶显示，内置浏览器增加失败兜底。'
+        '首页重做为横屏双栏仪表盘：左侧主视觉与启动，右侧快捷入口和最近版本。',
+        '底部 5 Tab 改为居中悬浮玻璃 Dock，顶栏压缩到 52px，启动键全局常驻。',
+        '横屏下去掉首页公告卡，版本只保留前两条；设置、资源、下载页统一收紧间距。',
+        '官网新增 Android APK 直链下载，不再只提供 Windows 版。'
       ]
     }]
   };
