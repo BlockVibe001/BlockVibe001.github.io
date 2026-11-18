@@ -16,7 +16,7 @@
 <style>
 /* ============================================================
    星云启动器 · 2026 浅色版
-   视觉：豆包式轻软界面 / 天空蓝 / 珊瑚粉 / 原创美西螈
+   视觉：豆包式轻软界面 / 天空蓝 / 薄荷绿 / 原创漂浮方块
    ============================================================ */
 :root{
   --bg:#f7faff;
@@ -149,12 +149,12 @@ img,svg{display:block}
 }
 .meta-chip b{color:#344969; font-weight:600}
 
-/* 美西螈场景 */
+/* 星云方块场景 */
 .habitat{
   position:relative; min-height:530px; border-radius:40px; overflow:hidden;
   background:
     radial-gradient(60% 48% at 72% 14%, rgba(255,255,255,.9), transparent 70%),
-    radial-gradient(70% 60% at 22% 28%, rgba(255,226,234,.72), transparent 70%),
+    radial-gradient(70% 60% at 22% 28%, rgba(219,236,255,.78), transparent 70%),
     linear-gradient(150deg,#dcecff 0%,#eaf4ff 42%,#dff8f0 100%);
   border:1px solid rgba(255,255,255,.95);
   box-shadow:0 36px 90px -50px rgba(54,102,185,.55), inset 0 1px 0 #fff;
@@ -171,36 +171,45 @@ img,svg{display:block}
 .habitat-caption{
   position:absolute; right:26px; top:24px; z-index:5; color:#8d9db4; font-size:10px;
 }
-.honey{
-  position:absolute; width:330px; height:330px; left:50%; top:48%;
+.nebula-glow{
+  position:absolute; width:340px; height:340px; left:50%; top:48%;
   transform:translate(-50%,-50%);
-  background:radial-gradient(circle at 35% 32%,rgba(255,255,255,.95),rgba(255,214,145,.66) 42%,rgba(255,164,180,.4) 74%,rgba(255,164,180,.06) 76%);
+  background:radial-gradient(circle at 35% 32%,rgba(255,255,255,.95),rgba(179,224,255,.58) 42%,rgba(159,236,213,.4) 72%,rgba(159,236,213,.05) 76%);
   border-radius:44% 56% 58% 42% / 46% 42% 58% 54%;
-  box-shadow:inset 0 0 56px rgba(255,255,255,.7), 0 30px 70px -40px rgba(220,150,120,.55);
+  box-shadow:inset 0 0 56px rgba(255,255,255,.7), 0 30px 70px -40px rgba(108,150,198,.5);
   animation:blob 12s ease-in-out infinite;
   filter:blur(.2px);
 }
-.honey::after{
+.nebula-glow::after{
   content:""; position:absolute; inset:18%; border-radius:50%;
   background:radial-gradient(circle at 40% 30%,rgba(255,255,255,.5),transparent 58%);
 }
 .blob{
-  position:absolute; border-radius:50%; filter:blur(12px); opacity:.75; pointer-events:none;
+  position:absolute; border-radius:50%; filter:blur(12px); opacity:.72; pointer-events:none;
 }
-.blob.b1{width:150px; height:120px; right:-34px; top:82px; background:rgba(143,227,203,.55); animation:float 9s ease-in-out infinite}
-.blob.b2{width:120px; height:100px; left:-22px; bottom:84px; background:rgba(255,183,201,.45); animation:float 11s ease-in-out infinite reverse}
-.axolotl-wrap{position:absolute; left:50%; top:49%; transform:translate(-50%,-50%); width:min(82%,390px); z-index:4}
-.axolotl{width:100%; filter:drop-shadow(0 22px 26px rgba(198,102,124,.22)); animation:bob 5.4s ease-in-out infinite}
-.gill-l{transform-origin:132px 122px; animation:sway 3.4s ease-in-out infinite}
-.gill-r{transform-origin:268px 122px; animation:sway 3.4s ease-in-out infinite reverse}
-.bubble{
-  position:absolute; border-radius:50%; background:radial-gradient(circle at 35% 30%,#fff,rgba(255,255,255,.4) 42%,rgba(255,255,255,.05) 70%);
-  border:1px solid rgba(255,255,255,.65); z-index:3; animation:rise 8s linear infinite;
+.blob.b1{width:150px; height:120px; right:-34px; top:82px; background:rgba(143,227,203,.5); animation:float 9s ease-in-out infinite}
+.blob.b2{width:120px; height:100px; left:-22px; bottom:84px; background:rgba(156,205,255,.42); animation:float 11s ease-in-out infinite reverse}
+.block-scene{
+  position:absolute; left:50%; top:49%; transform:translate(-50%,-50%);
+  width:min(84%,420px); z-index:4;
 }
-.bubble.bu1{width:14px; height:14px; left:22%; bottom:16%; animation-delay:-1s}
-.bubble.bu2{width:9px; height:9px; left:31%; bottom:10%; animation-delay:-5s}
-.bubble.bu3{width:18px; height:18px; right:24%; bottom:18%; animation-delay:-3s}
-.bubble.bu4{width:8px; height:8px; right:33%; bottom:8%; animation-delay:-6.4s}
+.block-svg{width:100%; filter:drop-shadow(0 26px 30px rgba(70,104,150,.24)); animation:bob 6s ease-in-out infinite}
+.orbit{
+  position:absolute; left:50%; top:48%; width:360px; height:225px; transform:translate(-50%,-50%) rotate(-8deg);
+  border:1px solid rgba(126,177,232,.32); border-radius:50%; z-index:2; pointer-events:none;
+}
+.orbit::after{
+  content:""; position:absolute; width:8px; height:8px; border-radius:50%; right:22%; top:10%;
+  background:#8fd6ff; box-shadow:0 0 18px rgba(143,214,255,.9);
+}
+.spark{
+  position:absolute; border-radius:50%; background:radial-gradient(circle at 35% 30%,#fff,rgba(196,231,255,.55) 44%,rgba(196,231,255,.05) 72%);
+  z-index:3; animation:rise 8s linear infinite; pointer-events:none;
+}
+.spark.s1{width:13px; height:13px; left:22%; bottom:16%; animation-delay:-1s}
+.spark.s2{width:9px; height:9px; left:31%; bottom:10%; animation-delay:-5s}
+.spark.s3{width:17px; height:17px; right:24%; bottom:18%; animation-delay:-3s}
+.spark.s4{width:8px; height:8px; right:33%; bottom:8%; animation-delay:-6.4s}
 .float-card{
   position:absolute; z-index:6; display:flex; align-items:center; gap:9px;
   padding:10px 13px; border-radius:16px; background:rgba(255,255,255,.82);
@@ -363,7 +372,6 @@ img,svg{display:block}
 /* ---------- 动效 ---------- */
 @keyframes bob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-14px) rotate(1deg)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(5deg)}}
 @keyframes rise{0%{transform:translateY(0) scale(.85); opacity:0}20%{opacity:.9}100%{transform:translateY(-210px) scale(1.15); opacity:0}}
 @keyframes blob{0%,100%{border-radius:44% 56% 58% 42% / 46% 42% 58% 54%}33%{border-radius:54% 46% 44% 56% / 58% 48% 52% 42%}66%{border-radius:48% 52% 56% 44% / 42% 58% 42% 58%}}
 .rise{opacity:0; transform:translateY(18px); animation:riseIn .8s cubic-bezier(.2,.7,.2,1) forwards}
@@ -404,8 +412,9 @@ img,svg{display:block}
   .hero-actions .btn{flex:1 1 auto}
   .hero-meta{gap:6px}
   .habitat{min-height:400px; border-radius:30px}
-  .axolotl-wrap{width:79%}
-  .honey{width:260px; height:260px}
+  .block-scene{width:78%}
+  .nebula-glow{width:250px; height:250px}
+  .orbit{width:280px; height:180px}
   .fc-rock{display:none}
   .fc-java{bottom:16px}
   .section{padding:38px 0}
@@ -480,58 +489,73 @@ img,svg{display:block}
         </div>
       </div>
 
-      <div class="habitat" aria-label="星云美西螈插画">
-        <div class="honey" aria-hidden="true"></div>
+      <div class="habitat" aria-label="星云方块插画">
+        <div class="nebula-glow" aria-hidden="true"></div>
+        <div class="orbit" aria-hidden="true"></div>
         <span class="blob b1" aria-hidden="true"></span>
         <span class="blob b2" aria-hidden="true"></span>
-        <div class="habitat-label"><i></i>NEBULA PET</div>
-        <div class="habitat-caption">原创美西螈 · 蜜糖池</div>
+        <div class="habitat-label"><i></i>NEBULA CORE</div>
+        <div class="habitat-caption">原创方块 · 漂浮岛</div>
 
-        <div class="axolotl-wrap">
-          <svg class="axolotl" viewBox="0 0 400 330" role="img" aria-label="一只粉色美西螈">
+        <div class="block-scene">
+          <svg class="block-svg" viewBox="0 0 420 380" role="img" aria-label="漂浮的星云草方块">
             <defs>
-              <linearGradient id="axoBody" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#ffc6d1"/>
-                <stop offset="1" stop-color="#ff9fb4"/>
+              <linearGradient id="grassTop" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#a8f0b8"/>
+                <stop offset=".55" stop-color="#72d697"/>
+                <stop offset="1" stop-color="#4fbd7d"/>
               </linearGradient>
-              <linearGradient id="axoBelly" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#fff4f6"/>
-                <stop offset="1" stop-color="#ffe3e9"/>
+              <linearGradient id="dirtLeft" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#8f694a"/>
+                <stop offset="1" stop-color="#604431"/>
+              </linearGradient>
+              <linearGradient id="dirtRight" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#aa805c"/>
+                <stop offset="1" stop-color="#74523a"/>
               </linearGradient>
             </defs>
-            <ellipse cx="200" cy="294" rx="92" ry="15" fill="rgba(179,111,129,.14)"/>
-            <path d="M268 196c30 2 48 18 50 38 2 15-15 8-24 2 10-7 6-23-26-31z" fill="url(#axoBody)" opacity=".92"/>
-            <ellipse cx="137" cy="258" rx="17" ry="10" fill="#ff9cb1" transform="rotate(-16 137 258)"/>
-            <ellipse cx="263" cy="258" rx="17" ry="10" fill="#ff9cb1" transform="rotate(16 263 258)"/>
-            <ellipse cx="200" cy="198" rx="80" ry="60" fill="url(#axoBody)"/>
-            <ellipse cx="200" cy="213" rx="50" ry="33" fill="url(#axoBelly)" opacity=".9"/>
-            <g class="gill-l">
-              <path d="M140 108c-22-18-39-12-42 3-3 12 14 6 26-5" fill="none" stroke="#ff8ea6" stroke-width="11" stroke-linecap="round"/>
-              <path d="M136 128c-27-8-42 2-40 17 2 11 16 3 28-9" fill="none" stroke="#ff8ea6" stroke-width="11" stroke-linecap="round"/>
-              <path d="M140 149c-22 2-32 14-27 27 4 9 16-1 23-15" fill="none" stroke="#ff8ea6" stroke-width="11" stroke-linecap="round"/>
-            </g>
-            <g class="gill-r">
-              <path d="M260 108c22-18 39-12 42 3 3 12-14 6-26-5" fill="none" stroke="#ff8ea6" stroke-width="11" stroke-linecap="round"/>
-              <path d="M264 128c27-8 42 2 40 17-2 11-16 3-28-9" fill="none" stroke="#ff8ea6" stroke-width="11" stroke-linecap="round"/>
-              <path d="M260 149c22 2 32 14 27 27-4 9-16-1-23-15" fill="none" stroke="#ff8ea6" stroke-width="11" stroke-linecap="round"/>
-            </g>
-            <ellipse cx="200" cy="126" rx="82" ry="63" fill="url(#axoBody)"/>
-            <ellipse cx="174" cy="145" rx="8" ry="6" fill="#fff" opacity=".36"/>
-            <circle cx="166" cy="116" r="10" fill="#3d2b3a"/>
-            <circle cx="234" cy="116" r="10" fill="#3d2b3a"/>
-            <circle cx="169" cy="112" r="3.5" fill="#fff"/>
-            <circle cx="237" cy="112" r="3.5" fill="#fff"/>
-            <ellipse cx="143" cy="144" rx="13" ry="7" fill="#ff7f98" opacity=".34"/>
-            <ellipse cx="257" cy="144" rx="13" ry="7" fill="#ff7f98" opacity=".34"/>
-            <path d="M188 139q12 10 24 0" fill="none" stroke="#a84d65" stroke-width="3.2" stroke-linecap="round"/>
-            <path d="M194 161q6 4 12 0" fill="none" stroke="#ffd0d9" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+
+            <ellipse cx="210" cy="352" rx="106" ry="16" fill="rgba(58,92,133,.18)"/>
+
+            <polygon points="80,160 210,230 210,340 80,270" fill="url(#dirtLeft)"/>
+            <polygon points="210,230 340,160 340,270 210,340" fill="url(#dirtRight)"/>
+            <polygon points="210,90 340,160 210,230 80,160" fill="url(#grassTop)"/>
+
+            <path d="M80 160 210 230 340 160" fill="none" stroke="#ffffff" stroke-opacity=".22" stroke-width="2"/>
+            <path d="M210 230v110" fill="none" stroke="#ffffff" stroke-opacity=".10" stroke-width="1.4"/>
+            <path d="M80 160v110M340 160v110" fill="none" stroke="#ffffff" stroke-opacity=".08" stroke-width="1.2"/>
+
+            <path d="M115 196 168 129M155 202 208 135M195 208 248 141M235 214 288 147M275 220 328 153" fill="none" stroke="#ffffff" stroke-opacity=".10" stroke-width="1.2"/>
+            <path d="M120 150 170 217M160 144 210 211M200 138 250 205M240 132 290 199M280 126 330 193" fill="none" stroke="#ffffff" stroke-opacity=".08" stroke-width="1.2"/>
+
+            <path d="M80 160 210 230 210 246 80 176Z" fill="#5fc98a" opacity=".66"/>
+            <path d="M210 230 340 160 340 176 210 246Z" fill="#4eb77b" opacity=".55"/>
+            <path d="M98 172h16v13H98zM130 189h18v14h-18zM166 207h20v15h-20zM204 226h22v16h-22zM249 223h16v13h-16zM283 205h18v14h-18zM315 188h15v13h-15z" fill="#ffffff" opacity=".16"/>
+
+            <polygon points="98,96 132,78 166,96 132,114" fill="#bdf2d0"/>
+            <polygon points="98,96 132,114 132,143 98,125" fill="#7fcf9b"/>
+            <polygon points="132,114 166,96 166,125 132,143" fill="#5fb982"/>
+
+            <polygon points="332,112 360,97 388,112 360,127" fill="#bfe6ff"/>
+            <polygon points="332,112 360,127 360,151 332,136" fill="#8dc7ef"/>
+            <polygon points="360,127 388,112 388,136 360,151" fill="#6eaddc"/>
+
+            <polygon points="72,292 96,279 120,292 96,305" fill="#ffe1a8"/>
+            <polygon points="72,292 96,305 96,326 72,313" fill="#e9bd70"/>
+            <polygon points="96,305 120,292 120,313 96,326" fill="#d6a557"/>
+
+            <circle cx="62" cy="110" r="3" fill="#ffffff" opacity=".9"/>
+            <circle cx="352" cy="62" r="4" fill="#ffffff" opacity=".8"/>
+            <circle cx="382" cy="200" r="2.4" fill="#ffffff" opacity=".9"/>
+            <circle cx="48" cy="214" r="2" fill="#ffffff" opacity=".7"/>
+            <path d="M300 78l3.2 9.5 9.5 3.2-9.5 3.2-3.2 9.5-3.2-9.5-9.5-3.2 9.5-3.2Z" fill="#ffffff" opacity=".85"/>
           </svg>
         </div>
 
-        <span class="bubble bu1" aria-hidden="true"></span>
-        <span class="bubble bu2" aria-hidden="true"></span>
-        <span class="bubble bu3" aria-hidden="true"></span>
-        <span class="bubble bu4" aria-hidden="true"></span>
+        <span class="spark s1" aria-hidden="true"></span>
+        <span class="spark s2" aria-hidden="true"></span>
+        <span class="spark s3" aria-hidden="true"></span>
+        <span class="spark s4" aria-hidden="true"></span>
 
         <div class="float-card fc-java">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="5" width="16" height="14" rx="3"/><path d="M8 10h8M8 14h5"/></svg>
