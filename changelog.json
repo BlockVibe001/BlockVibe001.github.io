@@ -3,6 +3,18 @@
   "updated": "2026-11-18",
   "entries": [
     {
+      "version": "1.0.11",
+      "date": "2026-11-18",
+      "channel": "Android",
+      "title": "应用内下载器",
+      "notes": [
+        "系统 DownloadManager 直接把文件下到 Download/Nebula，带系统通知，不再一律跳浏览器。",
+        "下载页改成任务队列：实时进度、暂停/继续、取消、重试、打开文件和移除。",
+        "资源页点下载先选具体文件版本；新增「世界/地图」分类和直链下载入口。",
+        "暂停通过取消后重新入队实现，继续会从头开始下载（DownloadManager 不支持断点恢复）。"
+      ]
+    },
+    {
       "version": "1.0.10",
       "date": "2026-11-18",
       "channel": "Android",
