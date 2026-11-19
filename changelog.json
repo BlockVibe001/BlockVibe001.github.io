@@ -3,6 +3,16 @@
   "updated": "2026-11-19",
   "entries": [
     {
+      "version": "1.0.74",
+      "date": "2026-11-19",
+      "channel": "Windows",
+      "title": "安装包补齐 PCL 与免责声明",
+      "notes": [
+        "重新打包 Windows 安装器，联机页、关于页和免责声明都进入正式包。",
+        "官网下载按钮同步指向 v1.0.74。"
+      ]
+    },
+    {
       "version": "1.0.18",
       "date": "2026-11-19",
       "channel": "Android",
