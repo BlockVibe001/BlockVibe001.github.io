@@ -3,6 +3,18 @@
   "updated": "2026-11-20",
   "entries": [
     {
+      "version": "1.0.78",
+      "date": "2026-11-20",
+      "channel": "Windows",
+      "title": "全场景联机地址接入",
+      "notes": [
+        "联机中心新增通用直连：IP:端口、域名、localhost 自动识别，端口缺省 25565。",
+        "覆盖自建服、SakuraFrp、ZeroTier、Tailscale、Radmin 等所有给出最终地址的联机方案。",
+        "裸 IP:端口 不再误判为星云房卡；星云房卡统一用 NEBULA:房间名@地址。",
+        "PCL 官方 10 位大厅号明确提示私有协议，建议改用 U/ 房号或 P 邀请码。"
+      ]
+    },
+    {
       "version": "1.0.77",
       "date": "2026-11-20",
       "channel": "Windows",
