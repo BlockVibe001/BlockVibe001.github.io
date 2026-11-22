@@ -1,0 +1,27 @@
+name: Deploy site
+
+on:
+  push:
+    paths:
+      - '.github/workflows/deploy-site.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Fetch new site
+        run: curl -fsSL 'https://aka.doubaocdn.com/s/E8UaAQGvwU' -o index.html
+      - name: Commit
+        run: |
+          git config user.name 'Nebula Bot'
+          git config user.email 'bot@blockvibe001.github.io'
+          git add index.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m '官网视觉升级：星云动效增强'
+          git push
