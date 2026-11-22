@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="星云启动器 1.0.92：Windows 与 Android 的 Minecraft 启动器。版本、资源、联机、更新收进一块安静的面板，本地优先，不绑账号。">
+<meta name="description" content="星云启动器 1.0.92：Windows 端的 Minecraft 启动器。版本、资源、联机、更新收进一块安静的面板，本地优先，不绑账号。">
 <meta name="theme-color" content="#080d18">
 <title>星云启动器 — 下一局，从星云着陆</title>
 <link rel="icon" href="assets/icon-64.png">
@@ -389,6 +389,39 @@
   .foot-links a:hover{color:var(--ink)}
   .foot-copy{width:100%;border-top:1px solid var(--line);margin-top:22px;padding-top:18px;font-size:10px;color:var(--muted-2);line-height:1.8}
 
+  /* ============ Android 未开放提示 ============ */
+  .android-overlay{
+    position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:20px;
+    background:rgba(4,8,16,.74);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+    opacity:0;transition:opacity .22s var(--ease);
+  }
+  .android-overlay[hidden]{display:none}
+  .android-overlay.show{opacity:1}
+  .android-dialog{
+    width:min(420px,100%);padding:30px 28px 25px;border-radius:22px;
+    border:1px solid rgba(167,193,255,.20);
+    background:
+      radial-gradient(100% 100% at 100% 0%,rgba(255,183,209,.10),transparent 55%),
+      linear-gradient(150deg,#111a2e,#090f1e);
+    box-shadow:0 30px 90px rgba(0,0,0,.52),inset 0 1px 0 rgba(255,255,255,.08);
+    transform:translateY(10px) scale(.98);transition:transform .22s var(--ease);
+  }
+  .android-overlay.show .android-dialog{transform:none}
+  .android-badge{
+    display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:8px;letter-spacing:.16em;
+    color:var(--sky);border:1px solid rgba(143,195,255,.20);border-radius:999px;padding:5px 9px;
+    background:rgba(143,195,255,.07);margin-bottom:16px;
+  }
+  .android-badge i{width:5px;height:5px;border-radius:50%;background:var(--grad)}
+  .android-dialog h3{margin:0 0 9px;font-family:var(--serif);font-size:27px;line-height:1.3;letter-spacing:-.02em;font-weight:600}
+  .android-dialog p{margin:0;color:var(--muted);font-size:13px;line-height:1.85;font-weight:300}
+  .android-dialog .btn{width:100%;margin-top:22px;height:46px}
+  .android-dialog .btn:focus{outline:none}
+  @media (max-width:760px){
+    .android-dialog{padding:26px 22px 21px;border-radius:18px}
+    .android-dialog h3{font-size:23px}
+  }
+
   @media (max-width:1080px){
     .hero-grid{grid-template-columns:1fr;gap:44px;min-height:0}
     .hero-copy{max-width:700px}
@@ -511,14 +544,14 @@
               <span class="long">下载 Windows 版</span><span class="short">Windows 1.0.92</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v11m0 0 4-4m-4 4-4-4"/><path d="M5 19h14"/></svg>
             </a>
-            <a class="btn btn-ghost" href="https://github.com/BlockVibe001/cm-launcher/releases/download/v1.0.24-android/NebulaLauncher-Android-1.0.24.apk">
+            <button class="btn btn-ghost" type="button" data-android-notice>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="3" width="12" height="18" rx="2.2"/><path d="M10 18h4"/></svg>
-              <span class="long">Android APK</span><span class="short">Android 1.0.24</span>
-            </a>
+              <span class="long">Android · 暂未开放</span><span class="short">Android</span>
+            </button>
           </div>
           <div class="hero-meta reveal delay-3">
             <span><i></i>WINDOWS 1.0.92</span><span class="sep">·</span>
-            <span><i></i>ANDROID 1.0.24</span><span class="sep">·</span>
+            <span><i></i>ANDROID 暂未开放</span><span class="sep">·</span>
             <span>本地优先 · 无广告</span>
           </div>
         </div>
@@ -539,7 +572,7 @@
         <div class="scroll"><i></i><span>SCROLL TO EXPLORE</span></div>
         <div class="hero-stats">
           <div><b>1.0.92</b><span>WINDOWS</span></div>
-          <div><b>1.0.24</b><span>ANDROID</span></div>
+          <div><b>暂未开放</b><span>ANDROID</span></div>
           <div><b>0 广告</b><span>NO ADS</span></div>
         </div>
       </div>
@@ -649,7 +682,7 @@
       <div class="update-intro">
         <div class="kicker reveal">03 / 更新日志</div>
         <h2 class="reveal delay-1">每次更新，<br><span class="soft">都写清楚。</span></h2>
-        <p class="reveal delay-2">电脑版与手机版分开记录。完整历史和安装包都在 GitHub Releases。</p>
+        <p class="reveal delay-2">电脑版更新记录在这里。完整历史和安装包都在 GitHub Releases；手机版开放后单独记录。</p>
         <span class="release-tag reveal delay-2"><i></i>LATEST · 2026.11.22</span>
       </div>
 
@@ -683,10 +716,6 @@
           <div><h3>启动动画与真实启动自检</h3><p>启动动画和启动过程同窗口播放，支持 ESC 跳过；真实启动自检会检查 Java、内存和实例文件，出问题先告诉你，不等到黑屏才发现。</p></div>
         </article>
         <article class="log">
-          <div class="log-meta"><b>v1.0.24</b><span class="android">ANDROID</span><span>2026-11-22</span></div>
-          <div><h3>手机版维护更新</h3><p>对齐 stable / beta / mobile 三通道更新清单，沿用原发布证书重新签名，可直接覆盖安装 1.0.23。</p></div>
-        </article>
-        <article class="log">
           <div class="log-meta"><b>v1.0.23</b><span class="android">ANDROID</span><span>2026-11-21</span></div>
           <div><h3>手机版联机与资源能力对齐</h3><p>手机版支持星云直连房卡、陶瓦房号与微软账号，资源中心五分类和 3D 皮肤预览同步可用。</p></div>
         </article>
@@ -702,7 +731,7 @@
           <div class="download-copy">
             <div class="download-kicker"><i></i>READY WHEN YOU ARE</div>
             <h2>下一局，<br><span class="outline">从星云开始。</span></h2>
-            <p>Windows 与 Android 都可以直接下载。安装后不需要注册星云账号，先打开，再决定要不要登录微软。</p>
+            <p>Windows 版可以直接下载。Android 版还在收尾，准备好后会在这里开放。</p>
             <div class="download-meta">
               <span>免费 · 无广告 · 不绑账号</span>
               <span>SHA-256</span>
@@ -717,10 +746,10 @@
               <span>Windows 1.0.92</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v11m0 0 4-4m-4 4-4-4"/><path d="M5 19h14"/></svg>
             </a>
-            <a class="btn btn-ghost" href="https://github.com/BlockVibe001/cm-launcher/releases/download/v1.0.24-android/NebulaLauncher-Android-1.0.24.apk">
-              <span>Android 1.0.24</span>
+            <button class="btn btn-ghost" type="button" data-android-notice>
+              <span>Android · 暂未开放</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="3" width="12" height="18" rx="2.2"/><path d="M10 18h4"/><path d="M9 7h.01M15 7h.01"/></svg>
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -745,6 +774,15 @@
     <div class="foot-copy">Minecraft 是 Mojang Studios 的商标；本站与 Mojang 无隶属关系。启动器不托管游戏、模组或 Add-On 安装包。</div>
   </div>
 </footer>
+
+<div class="android-overlay" id="androidNotice" hidden>
+  <div class="android-dialog" role="dialog" aria-modal="true" aria-labelledby="androidNoticeTitle">
+    <div class="android-badge"><i></i>ANDROID · 收尾中</div>
+    <h3 id="androidNoticeTitle">安卓版暂时还没做好</h3>
+    <p>电脑版已经可以下载。手机版准备好后，会在官网和更新日志里开放。</p>
+    <button class="btn btn-primary" type="button" id="androidNoticeClose">知道了</button>
+  </div>
+</div>
 
 <script>
   (function(){
@@ -785,6 +823,30 @@
         }
       });
     });
+
+    var notice = document.getElementById('androidNotice');
+    var noticeClose = document.getElementById('androidNoticeClose');
+    function openAndroidNotice(){
+      if (!notice) return;
+      notice.hidden = false;
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(function(){ notice.classList.add('show'); });
+      setTimeout(function(){ if (noticeClose) noticeClose.focus(); }, 60);
+    }
+    function closeAndroidNotice(){
+      if (!notice || notice.hidden) return;
+      notice.classList.remove('show');
+      document.body.style.overflow = '';
+      setTimeout(function(){ notice.hidden = true; }, 230);
+    }
+    document.querySelectorAll('[data-android-notice]').forEach(function(btn){
+      btn.addEventListener('click', function(e){ e.preventDefault(); openAndroidNotice(); });
+    });
+    if (noticeClose) noticeClose.addEventListener('click', closeAndroidNotice);
+    if (notice) {
+      notice.addEventListener('click', function(e){ if (e.target === notice) closeAndroidNotice(); });
+      document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeAndroidNotice(); });
+    }
   })();
 </script>
 </body>
