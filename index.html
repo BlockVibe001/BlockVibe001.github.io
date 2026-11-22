@@ -4,337 +4,402 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="星云启动器 1.0.94：Windows 端的 Minecraft 启动器。版本、资源、联机、更新收进一块安静的面板，本地优先，不绑账号。">
-<meta name="theme-color" content="#f7f8fc">
-<title>星云启动器 — 下一局，轻一点</title>
+<meta name="theme-color" content="#05060e">
+<title>星云启动器 — 把方块世界，装进一束星云</title>
 <link rel="icon" href="assets/icon-64.png">
-<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@300;400;500;700;800;900&display=swap">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@300;400;500;700;800;900&family=Noto+Serif+SC:wght@400;600;700;900&display=swap">
 <style>
   :root{
-    --paper:#f7f8fc;
-    --paper-2:#eef2fb;
-    --ink:#0b1220;
-    --ink-2:#1b2436;
-    --muted:#627086;
-    --muted-2:#8b96a8;
-    --line:rgba(12,23,42,.10);
-    --line-strong:rgba(12,23,42,.16);
-    --white:rgba(255,255,255,.78);
-    --blue:#4f7cff;
-    --blue-deep:#315ee8;
-    --pink:#ff8fb6;
-    --violet:#8d7bff;
-    --mint:#72d7bd;
-    --grad:linear-gradient(105deg,#6d9aff 0%,#a48bff 48%,#ff9dbf 100%);
-    --grad-soft:linear-gradient(105deg,rgba(109,154,255,.18),rgba(164,139,255,.12),rgba(255,157,191,.16));
-    --shadow:0 28px 80px rgba(31,54,105,.14),0 2px 8px rgba(31,54,105,.06);
-    --shadow-soft:0 14px 44px rgba(31,54,105,.10),0 1px 3px rgba(31,54,105,.05);
-    --ease:cubic-bezier(.16,1,.3,1);
+    --bg:#05060e;
+    --bg-2:#080b16;
+    --ink:#f5f8ff;
+    --ink-soft:#c9d2e6;
+    --muted:#8b97b2;
+    --muted-2:#5e6a83;
+    --line:rgba(255,255,255,.10);
+    --line-soft:rgba(255,255,255,.06);
+    --blue:#7a9fff;
+    --blue-deep:#4d6dff;
+    --violet:#a78bfa;
+    --pink:#f2a6ca;
+    --mint:#6ee7c8;
+    --grad:linear-gradient(105deg,#8ab4ff 0%,#b29aff 45%,#ffa9cd 100%);
+    --grad-soft:linear-gradient(105deg,rgba(138,180,255,.18),rgba(178,154,255,.12),rgba(255,169,205,.16));
     --font:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+    --serif:"Noto Serif SC","Songti SC","STSong",serif;
     --mono:"Cascadia Code","SF Mono","JetBrains Mono",Consolas,monospace;
-    --wrap:min(1200px,calc(100% - 48px));
+    --ease:cubic-bezier(.16,1,.3,1);
+    --wrap:min(1220px,calc(100% - 56px));
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);
+    margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
     overflow-x:hidden;
   }
   body::before{
-    content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+    content:"";position:fixed;inset:0;z-index:-3;pointer-events:none;
     background:
-      radial-gradient(50% 36% at 84% 0%,rgba(255,166,196,.26),transparent 68%),
-      radial-gradient(44% 34% at 8% 4%,rgba(126,168,255,.24),transparent 72%),
-      radial-gradient(60% 46% at 50% 100%,rgba(164,139,255,.12),transparent 72%),
-      linear-gradient(180deg,#fbfcff 0%,#f7f8fc 54%,#f4f6fb 100%);
+      radial-gradient(50% 38% at 84% -4%,rgba(93,129,255,.24),transparent 68%),
+      radial-gradient(42% 34% at 8% 4%,rgba(184,122,255,.17),transparent 72%),
+      radial-gradient(54% 42% at 50% 108%,rgba(255,128,184,.10),transparent 70%),
+      linear-gradient(180deg,#070913 0%,#05060e 50%,#04050a 100%);
   }
   body::after{
-    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.022;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+    content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.72'/%3E%3C/svg%3E");
   }
   a{color:inherit;text-decoration:none}
   button,a{-webkit-tap-highlight-color:transparent}
   button{font:inherit;cursor:pointer}
   img{max-width:100%;display:block}
-  ::selection{background:#c8d6ff;color:#0b1220}
-  .wrap{width:var(--wrap);margin:0 auto}
-  .mono{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  ::selection{background:#cdb9ff;color:#060812}
+  .wrap{width:var(--wrap);margin:0 auto;position:relative;z-index:4}
+  .mono{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .95s var(--ease),transform .95s var(--ease)}
   .reveal.in{opacity:1;transform:none}
   .delay-1{transition-delay:.08s}
   .delay-2{transition-delay:.16s}
   .delay-3{transition-delay:.24s}
 
+  /* 背景层 */
+  #stars{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:.7}
+  .aurora{position:fixed;inset:-10% -10% auto;height:78vh;z-index:-1;pointer-events:none;overflow:hidden;filter:blur(76px);opacity:.6}
+  .aurora i{position:absolute;display:block;border-radius:50%;mix-blend-mode:screen;animation:aurora 18s ease-in-out infinite alternate}
+  .aurora .a1{width:46vw;height:32vw;left:58%;top:-10%;background:rgba(74,110,255,.48)}
+  .aurora .a2{width:42vw;height:34vw;left:13%;top:2%;background:rgba(166,104,255,.32);animation-delay:-5s;animation-duration:24s}
+  .aurora .a3{width:36vw;height:28vw;left:38%;top:8%;background:rgba(255,126,184,.20);animation-delay:-10s;animation-duration:21s}
+  .spotlight{position:fixed;width:680px;height:680px;left:0;top:0;z-index:1;pointer-events:none;opacity:.12;
+    background:radial-gradient(circle,rgba(126,166,255,.45),transparent 64%);
+    transform:translate(-50%,-50%);transition:opacity .4s;mix-blend-mode:screen}
+  .progress{position:fixed;left:0;top:0;right:0;height:2px;z-index:110;background:transparent}
+  .progress i{display:block;height:100%;width:0;background:var(--grad);box-shadow:0 0 18px rgba(138,180,255,.5)}
+
   /* ============ 导航 ============ */
-  .nav{position:sticky;top:0;z-index:100;background:rgba(247,248,252,.78);
-    -webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);
-    border-bottom:1px solid rgba(12,23,42,.06)}
-  .nav-inner{display:flex;align-items:center;gap:28px;height:72px}
+  .site-head{position:fixed;left:0;right:0;top:0;z-index:100;transition:background .4s,border-color .4s,backdrop-filter .4s;border-bottom:1px solid transparent}
+  .site-head.scrolled{background:rgba(5,6,14,.72);border-color:rgba(255,255,255,.07);backdrop-filter:blur(20px) saturate(170%);-webkit-backdrop-filter:blur(20px) saturate(170%)}
+  .nav-inner{display:flex;align-items:center;gap:30px;height:82px}
   .brand{display:flex;align-items:center;gap:11px;flex-shrink:0}
-  .brand-mark{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;
-    background:#fff;box-shadow:0 8px 22px rgba(31,54,105,.10);border:1px solid rgba(255,255,255,.7)}
-  .brand-mark img{width:27px;height:27px;object-fit:contain}
+  .brand-mark{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 26px rgba(0,0,0,.28)}
+  .brand-mark img{width:26px;height:26px;object-fit:contain;filter:drop-shadow(0 3px 10px rgba(255,151,190,.24))}
   .brand-name{font-weight:800;font-size:15px;letter-spacing:-.02em;line-height:1.1}
-  .brand-sub{display:block;font-family:var(--mono);font-size:7.5px;color:var(--muted-2);letter-spacing:.2em;margin-top:4px}
-  .nav-links{display:flex;align-items:center;gap:26px;margin-left:auto;color:var(--muted);font-size:13px}
-  .nav-links a{position:relative;padding:8px 0;transition:color .2s}
+  .brand-sub{display:block;font-family:var(--mono);font-size:7.5px;color:var(--muted-2);letter-spacing:.22em;margin-top:4px}
+  .nav-links{display:flex;align-items:center;gap:27px;margin-left:auto;color:var(--muted);font-size:13px}
+  .nav-links a{position:relative;padding:9px 0;transition:color .2s}
   .nav-links a:hover{color:var(--ink)}
-  .nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:1px;height:1.5px;
-    background:var(--grad);transition:right .35s var(--ease);border-radius:2px}
+  .nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:1px;height:1px;background:var(--grad);transition:right .35s var(--ease)}
   .nav-links a:hover::after{right:0}
-  .nav-right{display:flex;align-items:center;gap:10px;margin-left:4px}
-  .version-pill{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 11px;border-radius:999px;
-    background:rgba(255,255,255,.7);border:1px solid var(--line);color:var(--muted);font-size:10.5px;white-space:nowrap}
-  .version-pill i{width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(114,215,189,.14)}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
-    height:48px;padding:0 22px;border-radius:14px;border:1px solid transparent;
-    font-size:14px;font-weight:600;letter-spacing:-.01em;
-    transition:transform .25s var(--ease),box-shadow .25s,background .25s,border-color .25s;white-space:nowrap}
+  .nav-right{display:flex;align-items:center;gap:13px;margin-left:4px}
+  .version-pill{display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 11px;border-radius:999px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.10);color:var(--muted);font-size:10px;white-space:nowrap}
+  .version-pill i{width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(110,231,200,.12)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:48px;padding:0 24px;border-radius:14px;border:1px solid transparent;
+    font-size:14px;font-weight:600;letter-spacing:-.01em;white-space:nowrap;
+    transition:transform .25s var(--ease),box-shadow .25s,background .25s,border-color .25s}
   .btn:hover{transform:translateY(-2px)}
   .btn svg{width:17px;height:17px;flex-shrink:0}
-  .btn-dark{background:var(--ink);color:#fff;box-shadow:0 10px 26px rgba(11,18,32,.18)}
-  .btn-dark:hover{background:#182136;box-shadow:0 15px 36px rgba(11,18,32,.24)}
-  .btn-light{background:rgba(255,255,255,.78);color:var(--ink);border-color:var(--line-strong);box-shadow:0 8px 20px rgba(31,54,105,.07)}
-  .btn-light:hover{background:#fff}
-  .btn-sm{height:38px;padding:0 15px;border-radius:11px;font-size:12.5px}
-  .nav-cta{height:38px;padding:0 15px;border-radius:11px;font-size:12.5px}
+  .btn-primary{position:relative;overflow:hidden;background:var(--grad);color:#07101d;box-shadow:0 14px 40px rgba(105,140,255,.25)}
+  .btn-primary:hover{box-shadow:0 18px 52px rgba(148,126,255,.34)}
+  .btn-primary::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 25%,rgba(255,255,255,.55) 48%,transparent 70%);transform:translateX(-120%);animation:shine 4.8s ease-in-out infinite}
+  .btn-ghost{background:rgba(255,255,255,.055);color:var(--ink);border-color:rgba(255,255,255,.14)}
+  .btn-ghost:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.24)}
+  .nav-cta{height:38px;padding:0 16px;border-radius:11px;font-size:12px}
 
   /* ============ Hero ============ */
-  .hero{position:relative;padding:clamp(60px,7vw,92px) 0 0;overflow:hidden}
-  .hero::before{content:"";position:absolute;width:760px;height:760px;right:-230px;top:-260px;border-radius:50%;
-    background:radial-gradient(closest-side,rgba(122,158,255,.26),rgba(175,150,255,.10) 52%,transparent 72%);
-    filter:blur(20px);pointer-events:none}
-  .hero::after{content:"";position:absolute;width:360px;height:360px;left:-120px;top:26%;border-radius:50%;
-    background:radial-gradient(closest-side,rgba(255,164,198,.18),transparent 72%);filter:blur(34px);pointer-events:none}
-  .hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,.98fr) minmax(0,1.02fr);gap:56px;align-items:center;min-height:610px}
-  .eyebrow{display:inline-flex;align-items:center;gap:10px;height:30px;padding:0 12px;border-radius:999px;
-    background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.8);box-shadow:0 6px 18px rgba(31,54,105,.06);
-    color:var(--muted);font-size:10.5px;letter-spacing:.08em}
-  .eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--grad);box-shadow:0 0 0 4px rgba(127,153,255,.13)}
-  .hero h1{margin:24px 0 0;font-size:clamp(42px,5.3vw,72px);line-height:1.12;letter-spacing:-.055em;font-weight:800}
-  .hero h1 .thin{display:block;font-weight:300;letter-spacing:-.045em;color:var(--ink-2)}
-  .hero h1 .accent{position:relative;display:inline-block;color:transparent;background:var(--grad);-webkit-background-clip:text;background-clip:text}
-  .hero-copy{max-width:480px;margin:22px 0 0;color:var(--muted);font-size:15px;line-height:1.85}
-  .hero-copy b{color:var(--ink);font-weight:700}
-  .hero-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:30px}
-  .hero-actions .btn{height:50px;padding:0 24px;border-radius:15px}
-  .hero-meta{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:22px;color:var(--muted-2);font-size:10.5px}
+  .hero{position:relative;min-height:0;padding:clamp(126px,14vh,164px) 0 0;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:58px;align-items:center;width:100%}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;height:31px;padding:0 13px;border-radius:999px;background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.12);color:var(--muted);font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--grad);box-shadow:0 0 0 4px rgba(138,180,255,.10);animation:pulse 2.4s ease-in-out infinite}
+  .hero h1{margin:26px 0 0;font-size:clamp(48px,6.2vw,88px);line-height:1.1;letter-spacing:-.06em;font-weight:800}
+  .hero h1 .line{display:block;overflow:hidden}
+  .hero h1 .line span{display:block;transform:translateY(112%);animation:title-in 1.1s var(--ease) forwards}
+  .hero h1 .line:nth-child(2) span{animation-delay:.12s}
+  .hero h1 em{font-family:var(--serif);font-style:italic;font-weight:600;letter-spacing:-.045em;color:transparent;background:var(--grad);-webkit-background-clip:text;background-clip:text}
+  .hero-sub{max-width:500px;margin:24px 0 0;color:var(--muted);font-size:15px;line-height:1.9}
+  .hero-sub b{color:var(--ink-soft);font-weight:600}
+  .hero-actions{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-top:32px}
+  .hero-actions .btn{height:50px;border-radius:15px;padding:0 25px}
+  .hero-meta{display:flex;align-items:center;gap:19px;flex-wrap:wrap;margin-top:22px;color:var(--muted-2);font-size:10.5px}
   .hero-meta span{display:inline-flex;align-items:center;gap:7px}
   .hero-meta i{width:5px;height:5px;border-radius:50%;background:var(--muted-2)}
-  .hero-meta .ok i{background:var(--mint)}
   .hero-meta .ok{color:var(--muted)}
+  .hero-meta .ok i{background:var(--mint);box-shadow:0 0 8px rgba(110,231,200,.45)}
 
-  /* 产品窗口 */
-  .hero-visual{position:relative;padding:18px 0 10px}
-  .device{position:relative;z-index:2;width:100%;padding:9px;border-radius:22px;
-    background:linear-gradient(145deg,#111a2c,#080d18);border:1px solid rgba(255,255,255,.12);
-    box-shadow:0 44px 100px rgba(16,32,72,.28),0 10px 28px rgba(16,32,72,.16);
-    transform:rotate(-1.2deg)}
-  .device::before{content:"";position:absolute;inset:-20px -28px -28px;border-radius:30px;z-index:-1;
-    background:radial-gradient(60% 70% at 50% 40%,rgba(117,153,255,.30),rgba(255,150,190,.14) 60%,transparent 78%);
-    filter:blur(18px)}
-  .device-bar{display:flex;align-items:center;gap:7px;padding:3px 5px 9px}
-  .device-bar i{width:7px;height:7px;border-radius:50%;background:#ff9dae}
-  .device-bar i:nth-child(2){background:#ffd479}
-  .device-bar i:nth-child(3){background:#72d7bd}
-  .device-bar span{margin-left:8px;font-family:var(--mono);font-size:8px;letter-spacing:.18em;color:rgba(255,255,255,.46)}
-  .device img{width:100%;border-radius:15px;border:1px solid rgba(255,255,255,.07)}
-  .float-card{position:absolute;z-index:3;display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:13px;
-    background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.92);
-    -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 16px 38px rgba(31,54,105,.15)}
-  .float-card .fc-icon{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex-shrink:0;font-size:13px}
-  .float-card .fc-title{font-size:10px;color:var(--muted-2);line-height:1.2}
-  .float-card .fc-value{font-size:12px;font-weight:800;color:var(--ink);line-height:1.35}
-  .float-java{left:-22px;bottom:48px}
-  .float-java .fc-icon{background:rgba(255,212,121,.22);color:#9a6b00}
-  .float-mem{right:-18px;top:52px}
-  .float-mem .fc-icon{background:rgba(114,215,189,.18);color:#157e68}
-  .float-ok{right:22px;bottom:-2px;padding:8px 11px}
-  .float-ok .fc-icon{width:24px;height:24px;border-radius:7px;background:rgba(79,124,255,.12);color:var(--blue)}
-  .float-ok .fc-value{font-size:10.5px}
+  /* 产品舞台 */
+  .product-stage{position:relative;min-height:560px;display:grid;place-items:center;perspective:1100px}
+  .orbit{position:absolute;border:1px solid rgba(255,255,255,.14);border-radius:50%;pointer-events:none}
+  .orbit.one{width:560px;height:560px;transform:rotateX(68deg) rotateZ(16deg);border-color:rgba(138,180,255,.22);animation:orbit-spin 22s linear infinite}
+  .orbit.two{width:440px;height:440px;transform:rotateX(68deg) rotateZ(-22deg);border-color:rgba(255,169,205,.17);animation:orbit-spin 16s linear infinite reverse}
+  .orbit.three{width:330px;height:330px;transform:rotateX(68deg) rotateZ(46deg);border-color:rgba(178,154,255,.20);animation:orbit-spin 12s linear infinite}
+  .product-glow{position:absolute;width:520px;height:420px;border-radius:50%;background:radial-gradient(closest-side,rgba(91,126,255,.28),rgba(255,143,190,.12) 56%,transparent 74%);filter:blur(20px);pointer-events:none}
+  .app-frame{position:relative;z-index:3;width:min(100%,620px);padding:8px;border-radius:22px;background:linear-gradient(145deg,#111a2e,#070a12);
+    border:1px solid rgba(255,255,255,.14);box-shadow:0 48px 110px rgba(0,0,0,.5),0 16px 34px rgba(8,16,42,.35);transform:rotateY(-8deg) rotateX(3deg);transition:transform .18s ease-out;will-change:transform}
+  .app-frame::before{content:"";position:absolute;inset:-30px -24px -22px;border-radius:34px;z-index:-1;background:radial-gradient(62% 64% at 54% 38%,rgba(111,157,255,.34),rgba(255,162,206,.15) 58%,transparent 78%);filter:blur(26px)}
+  .app-bar{display:flex;align-items:center;gap:7px;padding:2px 4px 8px}
+  .app-bar i{width:7px;height:7px;border-radius:50%;background:#ff9daf}
+  .app-bar i:nth-child(2){background:#ffd478}
+  .app-bar i:nth-child(3){background:#6ee7c8}
+  .app-bar span{margin-left:7px;font-family:var(--mono);font-size:8px;letter-spacing:.18em;color:rgba(255,255,255,.42)}
+  .app-bar .live{margin-left:auto;color:#8ff3d2;font-size:7px;border:1px solid rgba(110,231,200,.24);background:rgba(110,231,200,.08);padding:2px 6px;border-radius:4px;letter-spacing:.1em}
+  .app-frame img{width:100%;border-radius:15px;border:1px solid rgba(255,255,255,.06)}
+  .float{position:absolute;z-index:4;display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:13px;background:rgba(13,18,32,.72);border:1px solid rgba(255,255,255,.13);
+    box-shadow:0 16px 42px rgba(0,0,0,.3);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);animation:float 5.5s ease-in-out infinite}
+  .float .fi{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:13px;flex-shrink:0}
+  .float .ft{font-size:9.5px;color:var(--muted-2);line-height:1.2}
+  .float .fv{font-size:11.5px;font-weight:800;color:var(--ink);line-height:1.35}
+  .float-java{left:-30px;bottom:78px;animation-delay:-1.8s}
+  .float-java .fi{background:rgba(255,212,120,.15);color:#ffd478}
+  .float-mem{right:-22px;top:74px;animation-delay:-3.2s}
+  .float-mem .fi{background:rgba(110,231,200,.13);color:#8ff3d2}
+  .float-save{right:16px;bottom:-2px;padding:8px 11px;animation-delay:-.8s}
+  .float-save .fi{width:24px;height:24px;border-radius:7px;background:rgba(138,180,255,.13);color:#a9c2ff;font-size:10px}
+  .float-save .fv{font-size:10.5px}
 
-  .scroll-note{display:flex;align-items:center;gap:14px;margin-top:42px;padding-top:18px;border-top:1px solid var(--line);
-    color:var(--muted-2);font-family:var(--mono);font-size:9px;letter-spacing:.2em}
-  .scroll-note i{width:30px;height:1px;background:var(--line-strong)}
-  .stat-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:28px;border:1px solid var(--line);
-    border-radius:18px;background:rgba(255,255,255,.52);overflow:hidden}
-  .stat{padding:18px 20px 17px;border-right:1px solid var(--line)}
-  .stat:last-child{border-right:0}
-  .stat b{display:block;font-size:21px;font-weight:800;letter-spacing:-.05em;line-height:1}
-  .stat span{display:block;margin-top:7px;color:var(--muted-2);font-family:var(--mono);font-size:8.5px;letter-spacing:.15em;text-transform:uppercase}
+  .hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-top:46px;padding-top:20px;border-top:1px solid var(--line-soft)}
+  .hero-note{display:flex;align-items:center;gap:12px;color:var(--muted-2);font-family:var(--mono);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase}
+  .hero-note i{width:28px;height:1px;background:linear-gradient(90deg,var(--grad));display:block}
+  .hero-stats{display:flex;gap:30px}
+  .hero-stat{display:flex;flex-direction:column;gap:4px;text-align:right}
+  .hero-stat b{font-size:17px;letter-spacing:-.04em}
+  .hero-stat span{color:var(--muted-2);font-family:var(--mono);font-size:7.5px;letter-spacing:.15em}
 
-  /* ============ 公用区块 ============ */
+  /* 跑马灯 */
+  .ticker{position:relative;margin-top:58px;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);height:58px;display:flex;align-items:center;overflow:hidden;background:rgba(255,255,255,.018)}
+  .ticker::before,.ticker::after{content:"";position:absolute;top:0;bottom:0;width:15%;z-index:2;pointer-events:none}
+  .ticker::before{left:0;background:linear-gradient(90deg,#05060e,transparent)}
+  .ticker::after{right:0;background:linear-gradient(270deg,#05060e,transparent)}
+  .ticker-track{display:flex;align-items:center;gap:36px;width:max-content;animation:marquee 32s linear infinite}
+  .ticker-item{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--muted-2);text-transform:uppercase;white-space:nowrap}
+  .ticker-item i{width:5px;height:5px;border-radius:50%;background:rgba(138,180,255,.55)}
+
+  /* ============ 区块 ============ */
   section{position:relative}
-  .section{padding:clamp(70px,8vw,110px) 0 0}
-  .section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.75fr);gap:40px;align-items:end;margin-bottom:38px}
-  .kicker{display:inline-flex;align-items:center;gap:10px;color:var(--muted-2);font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase}
-  .kicker::before{content:"";width:22px;height:1px;background:var(--grad)}
-  .section h2{margin:14px 0 0;font-size:clamp(28px,3.2vw,42px);line-height:1.25;letter-spacing:-.045em;font-weight:800}
-  .section-head p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.8;max-width:420px;justify-self:end;text-align:right}
-  .card{position:relative;border-radius:22px;border:1px solid rgba(255,255,255,.8);
-    background:rgba(255,255,255,.62);box-shadow:var(--shadow-soft);overflow:hidden}
-  .card::before{content:"";position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(140deg,rgba(255,255,255,.36),transparent 38%)}
-  .icon-box{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
-    background:rgba(79,124,255,.10);color:var(--blue);border:1px solid rgba(79,124,255,.12)}
+  .section{padding:clamp(88px,10vw,140px) 0 0}
+  .section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.72fr);gap:44px;align-items:end;margin-bottom:40px}
+  .kicker{display:inline-flex;align-items:center;gap:11px;color:var(--muted-2);font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase}
+  .kicker::before{content:"";width:26px;height:1px;background:var(--grad)}
+  .section h2{margin:16px 0 0;font-size:clamp(34px,4vw,54px);line-height:1.2;letter-spacing:-.055em;font-weight:800}
+  .section h2 em{font-family:var(--serif);font-style:italic;font-weight:600;color:transparent;background:var(--grad);-webkit-background-clip:text;background-clip:text}
+  .section-head p{margin:0;color:var(--muted);font-size:13px;line-height:1.9;max-width:430px;justify-self:end;text-align:right}
+  .card{position:relative;border-radius:20px;border:1px solid rgba(255,255,255,.10);background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018));overflow:hidden}
+  .card::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.09),transparent 34%)}
+  .card-hover{transition:border-color .3s,transform .3s var(--ease),box-shadow .3s}
+  .card-hover:hover{border-color:rgba(138,180,255,.28);transform:translateY(-4px);box-shadow:0 24px 60px rgba(20,33,78,.26)}
+  .icon-box{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(138,180,255,.10);color:#a9c2ff;border:1px solid rgba(138,180,255,.15)}
   .icon-box svg{width:19px;height:19px}
 
-  /* 特性 */
-  .feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-  .feature{padding:24px 24px 22px;min-height:238px;display:flex;flex-direction:column}
-  .feature-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-  .feature-no{font-family:var(--mono);font-size:8.5px;color:var(--muted-2);letter-spacing:.16em}
-  .feature h3{margin:22px 0 8px;font-size:20px;letter-spacing:-.04em;font-weight:800;line-height:1.35}
-  .feature p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.8}
-  .feature-list{margin:auto 0 0;padding:16px 0 0;list-style:none;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:6px}
-  .feature-list span{display:inline-flex;height:24px;align-items:center;padding:0 9px;border-radius:7px;
-    background:rgba(12,23,42,.045);color:var(--muted);font-size:10px}
-  .feature:nth-child(2) .icon-box{background:rgba(255,143,182,.12);border-color:rgba(255,143,182,.16);color:#c25580}
-  .feature:nth-child(3) .icon-box{background:rgba(114,215,189,.14);border-color:rgba(114,215,189,.18);color:#178b72}
+  .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+  .bento-item{padding:26px 26px 24px;min-height:260px;display:flex;flex-direction:column}
+  .b1{grid-column:span 7}
+  .b2{grid-column:span 5}
+  .b3{grid-column:span 5}
+  .b4{grid-column:span 7}
+  .bento-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+  .bento-no{font-family:var(--mono);font-size:8.5px;color:var(--muted-2);letter-spacing:.16em}
+  .bento-item h3{margin:20px 0 8px;font-size:22px;letter-spacing:-.04em;line-height:1.3}
+  .bento-item p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.8;max-width:420px}
+  .bento-visual{margin-top:auto;padding-top:22px}
+  .version-panel{border:1px solid rgba(255,255,255,.09);border-radius:12px;background:rgba(0,0,0,.22);overflow:hidden}
+  .vp-row{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);font-size:10.5px}
+  .vp-row:last-child{border-bottom:0}
+  .vp-row .tag{font-family:var(--mono);font-size:7px;letter-spacing:.1em;padding:2px 5px;border-radius:4px;background:rgba(138,180,255,.12);color:#b6c9ff}
+  .vp-row .name{color:var(--ink-soft);font-weight:600}
+  .vp-row .status{margin-left:auto;color:#7de9c8;font-size:9px}
+  .resource-cloud{display:flex;flex-wrap:wrap;gap:7px}
+  .resource-cloud span{padding:7px 10px;border-radius:7px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);font-size:10px;color:var(--muted)}
+  .resource-cloud span.active{background:rgba(138,180,255,.13);border-color:rgba(138,180,255,.28);color:#dfe7ff}
+  .net-map{position:relative;height:110px;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:radial-gradient(circle at 50% 50%,rgba(138,180,255,.09),transparent 65%);overflow:hidden}
+  .net-node{position:absolute;width:9px;height:9px;border-radius:50%;background:#9eb8ff;box-shadow:0 0 0 5px rgba(138,180,255,.12);animation:node-pulse 2.6s ease-in-out infinite}
+  .net-node.n1{left:18%;top:30%;animation-delay:-.4s}
+  .net-node.n2{left:48%;top:64%;animation-delay:-1.2s;background:#ffa9cd;box-shadow:0 0 0 5px rgba(255,169,205,.12)}
+  .net-node.n3{right:18%;top:26%;animation-delay:-2s}
+  .net-line{position:absolute;height:1px;background:linear-gradient(90deg,rgba(138,180,255,.15),rgba(138,180,255,.55),rgba(138,180,255,.15));transform-origin:left center}
+  .net-line.l1{left:20%;top:36%;width:34%;transform:rotate(24deg)}
+  .net-line.l2{left:50%;top:64%;width:30%;transform:rotate(-28deg)}
+  .net-label{position:absolute;left:14px;bottom:9px;font-family:var(--mono);font-size:7px;color:var(--muted-2);letter-spacing:.14em}
 
-  /* 流程 */
-  .flow{display:grid;grid-template-columns:1fr 1.08fr;gap:18px;align-items:stretch}
-  .flow-steps{padding:8px 6px;display:flex;flex-direction:column;justify-content:center}
-  .flow-step{display:grid;grid-template-columns:34px minmax(0,1fr);gap:16px;padding:18px 12px;border-bottom:1px solid var(--line)}
-  .flow-step:last-child{border-bottom:0}
-  .flow-num{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.72);
-    border:1px solid var(--line);font-family:var(--mono);font-size:9.5px;color:var(--muted)}
-  .flow-step h3{margin:0 0 5px;font-size:15px;letter-spacing:-.02em}
-  .flow-step p{margin:0;color:var(--muted);font-size:11.5px;line-height:1.7}
-  .flow-visual{padding:14px;display:flex;align-items:center}
-  .flow-window{border-radius:16px;overflow:hidden;background:#0b1220;border:1px solid rgba(255,255,255,.1);box-shadow:0 18px 48px rgba(16,32,72,.18)}
-  .flow-window img{width:100%}
-  .flow-window .tiny-bar{display:flex;gap:5px;padding:8px 10px 0}
-  .flow-window .tiny-bar i{width:6px;height:6px;border-radius:50%;background:#ff9dae}
-  .flow-window .tiny-bar i:nth-child(2){background:#ffd479}
-  .flow-window .tiny-bar i:nth-child(3){background:#72d7bd}
+  /* 开机向导预览 */
+  .setup-split{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:54px;align-items:center}
+  .setup-copy h2{font-size:clamp(32px,3.8vw,50px);line-height:1.2;letter-spacing:-.055em;margin:16px 0 0}
+  .setup-copy p{margin:18px 0 0;color:var(--muted);font-size:13px;line-height:1.9;max-width:430px}
+  .setup-points{display:grid;gap:0;margin-top:27px;border-top:1px solid var(--line-soft)}
+  .setup-point{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line-soft);font-size:11.5px;color:var(--ink-soft)}
+  .setup-point i{width:23px;height:23px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.10);font-style:normal;font-size:9px;color:var(--muted)}
+  .setup-point .mini{margin-left:auto;color:var(--muted-2);font-family:var(--mono);font-size:8px;letter-spacing:.1em}
+  .setup-shell{position:relative;border-radius:24px;padding:14px;background:rgba(11,16,29,.7);border:1px solid rgba(255,255,255,.12);box-shadow:0 40px 100px rgba(0,0,0,.4)}
+  .setup-shell::before{content:"";position:absolute;inset:-26px -20px;border-radius:36px;background:radial-gradient(54% 60% at 50% 48%,rgba(91,126,255,.18),transparent 75%);filter:blur(22px);z-index:-1}
+  .setup-top{display:flex;align-items:center;gap:7px;padding:0 4px 10px}
+  .setup-top i{width:7px;height:7px;border-radius:50%;background:#ff9daf}
+  .setup-top i:nth-child(2){background:#ffd478}
+  .setup-top i:nth-child(3){background:#6ee7c8}
+  .setup-top span{margin-left:auto;font-family:var(--mono);font-size:8px;color:var(--muted-2);letter-spacing:.14em}
+  .setup-window{border-radius:16px;background:linear-gradient(145deg,#111827,#080c15);border:1px solid rgba(255,255,255,.08);padding:18px 18px 15px;min-height:338px}
+  .setup-stepline{display:flex;align-items:center;gap:6px}
+  .setup-stepline i{display:block;height:3px;flex:1;border-radius:999px;background:rgba(255,255,255,.10);transition:background .4s}
+  .setup-stepline i.on{background:var(--grad);box-shadow:0 0 10px rgba(138,180,255,.3)}
+  .setup-kicker{margin-top:13px;font-family:var(--mono);font-size:8px;letter-spacing:.18em;color:var(--muted-2)}
+  .setup-title{margin:6px 0 0;font-size:23px;letter-spacing:-.04em;line-height:1.3}
+  .setup-desc{margin:8px 0 0;color:var(--muted);font-size:11.5px;line-height:1.75;min-height:42px}
+  .setup-options{display:flex;flex-wrap:wrap;gap:6px;margin-top:15px;min-height:30px}
+  .setup-options span{display:inline-flex;align-items:center;height:26px;padding:0 9px;border-radius:7px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);font-size:9.5px;color:var(--muted)}
+  .setup-options span.sel{background:rgba(138,180,255,.12);border-color:rgba(138,180,255,.30);color:#e4ebff}
+  .setup-footer{display:flex;align-items:center;justify-content:space-between;margin-top:20px;padding-top:12px;border-top:1px solid rgba(255,255,255,.07)}
+  .setup-footer span{font-size:9px;color:var(--muted-2)}
+  .setup-footer b{font-size:10px;color:#eaf0ff;font-weight:600}
+  .setup-tabs{display:flex;gap:6px;margin-top:12px}
+  .setup-tabs button{flex:1;height:30px;border-radius:8px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);color:var(--muted);font-size:9px}
+  .setup-tabs button.on{border-color:rgba(138,180,255,.32);background:rgba(138,180,255,.10);color:#eaf0ff}
 
   /* 下载 */
-  .download{padding-top:clamp(70px,8vw,110px)}
-  .download-card{position:relative;overflow:hidden;border-radius:28px;padding:clamp(28px,4vw,46px);
-    background:linear-gradient(135deg,#0d1524 0%,#111d35 54%,#1a2340 100%);color:#fff;
-    box-shadow:0 40px 100px rgba(11,18,32,.26)}
-  .download-card::before{content:"";position:absolute;width:620px;height:620px;right:-180px;top:-300px;border-radius:50%;
-    background:radial-gradient(closest-side,rgba(109,154,255,.34),rgba(255,143,182,.14) 50%,transparent 72%);filter:blur(6px)}
-  .download-card::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.06;
-    background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.9) 1px,transparent 0);background-size:18px 18px}
-  .download-inner{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:36px;align-items:center}
-  .download .kicker{color:rgba(255,255,255,.48)}
-  .download .kicker::before{background:rgba(255,255,255,.3)}
-  .download h2{margin:14px 0 0;font-size:clamp(28px,3.2vw,42px);line-height:1.24;letter-spacing:-.045em}
-  .download p{margin:14px 0 0;max-width:540px;color:rgba(255,255,255,.58);font-size:13px;line-height:1.8}
-  .download-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
-  .download-actions .btn{height:50px;border-radius:15px}
-  .download-actions .btn-primary{background:#fff;color:var(--ink);box-shadow:0 12px 32px rgba(0,0,0,.22)}
-  .download-actions .btn-primary:hover{background:#f1f5ff}
-  .download-actions .btn-android{background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.16)}
-  .download-actions .btn-android:hover{background:rgba(255,255,255,.13)}
-  .download-note{display:flex;align-items:center;gap:12px;margin-top:18px;color:rgba(255,255,255,.38);font-size:10px;flex-wrap:wrap}
-  .download-note span{display:inline-flex;align-items:center;gap:6px}
-  .download-note i{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.36)}
-  .download-panel{border-radius:18px;padding:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.11);
-    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-  .download-panel h3{margin:0 0 4px;font-size:13px;letter-spacing:-.02em}
-  .download-panel .small{font-size:10px;color:rgba(255,255,255,.44);line-height:1.6}
-  .download-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.09);font-size:11px}
-  .download-row:last-child{border-bottom:0;padding-bottom:0}
-  .download-row span{color:rgba(255,255,255,.48)}
-  .download-row b{font-weight:600;color:rgba(255,255,255,.9);font-size:10.5px}
-  .download-hash{margin-top:10px;padding:9px 10px;border-radius:8px;background:rgba(0,0,0,.18);color:rgba(255,255,255,.38);
-    font-family:var(--mono);font-size:8px;word-break:break-all;line-height:1.5}
+  .download-card{position:relative;overflow:hidden;border-radius:28px;padding:clamp(30px,4.4vw,56px);background:
+    radial-gradient(72% 100% at 86% 0%,rgba(111,157,255,.34),transparent 62%),
+    radial-gradient(52% 80% at 12% 100%,rgba(255,143,190,.18),transparent 70%),
+    linear-gradient(135deg,#0a0e1d,#0d1428 52%,#10182d);border:1px solid rgba(255,255,255,.12);box-shadow:0 50px 120px rgba(0,0,0,.4)}
+  .download-card::before{content:"";position:absolute;width:520px;height:520px;right:-130px;top:-260px;border-radius:50%;background:radial-gradient(closest-side,rgba(138,180,255,.35),rgba(255,143,190,.13) 52%,transparent 72%);filter:blur(12px);animation:glow-breathe 7s ease-in-out infinite}
+  .download-card::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.08;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.9) 1px,transparent 0);background-size:18px 18px}
+  .download-inner{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:40px;align-items:center}
+  .download-copy .kicker{color:rgba(255,255,255,.5)}
+  .download-copy h2{margin:16px 0 0;font-size:clamp(34px,4.2vw,56px);line-height:1.2;letter-spacing:-.055em}
+  .download-copy h2 em{font-family:var(--serif);font-style:italic;font-weight:600;color:transparent;background:var(--grad);-webkit-background-clip:text;background-clip:text}
+  .download-copy p{margin:16px 0 0;color:rgba(255,255,255,.56);font-size:13px;line-height:1.85;max-width:520px}
+  .download-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+  .download-actions .btn{height:52px;border-radius:15px}
+  .download-actions .dl-main{background:#fff;color:#07101d;box-shadow:0 14px 40px rgba(0,0,0,.28)}
+  .download-actions .dl-main:hover{background:#f2f6ff}
+  .download-actions .dl-android{background:rgba(255,255,255,.07);color:rgba(255,255,255,.84);border-color:rgba(255,255,255,.14)}
+  .download-actions .dl-android:hover{background:rgba(255,255,255,.12)}
+  .download-mini{display:flex;gap:17px;flex-wrap:wrap;margin-top:19px;color:rgba(255,255,255,.38);font-size:9.5px}
+  .download-mini span{display:inline-flex;align-items:center;gap:6px}
+  .download-mini i{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.35)}
+  .download-panel{border-radius:18px;padding:19px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  .download-panel h3{margin:0;font-size:14px;letter-spacing:-.02em}
+  .download-panel .small{margin-top:4px;font-size:9.5px;color:rgba(255,255,255,.42)}
+  .download-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:10.5px}
+  .download-row:last-child{border-bottom:0}
+  .download-row span{color:rgba(255,255,255,.44)}
+  .download-row b{font-weight:600;color:rgba(255,255,255,.9)}
+  .download-hash{margin-top:11px;padding:10px;border-radius:9px;background:rgba(0,0,0,.22);font-family:var(--mono);font-size:7.5px;line-height:1.55;word-break:break-all;color:rgba(255,255,255,.38)}
+  .download-license{margin-top:10px;font-size:8.5px;color:rgba(255,255,255,.32);line-height:1.6}
 
   /* 更新日志 */
-  .log{border-top:1px solid var(--line)}
-  .log-item{display:grid;grid-template-columns:150px minmax(0,1fr);gap:26px;padding:24px 0;border-bottom:1px solid var(--line)}
-  .log-meta{display:flex;flex-direction:column;gap:6px}
-  .log-version{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink)}
-  .log-date{font-size:10px;color:var(--muted-2)}
-  .log-tag{width:max-content;padding:2px 7px;border-radius:5px;background:rgba(79,124,255,.09);color:var(--blue);font-size:8.5px}
-  .log-body h3{margin:0 0 6px;font-size:14px;letter-spacing:-.02em}
-  .log-body p{margin:0;color:var(--muted);font-size:11.5px;line-height:1.75}
-  .log-body .changes{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-  .log-body .changes span{font-size:9.5px;color:var(--muted);padding:3px 7px;border-radius:6px;background:rgba(12,23,42,.045)}
-  .more-log{display:inline-flex;align-items:center;gap:7px;margin-top:18px;color:var(--muted);font-size:11px}
-  .more-log:hover{color:var(--ink)}
+  .log-list{border-top:1px solid var(--line-soft)}
+  .log-row{display:grid;grid-template-columns:150px minmax(0,1fr) 150px;gap:26px;padding:25px 0;border-bottom:1px solid var(--line-soft);align-items:start}
+  .log-meta{display:flex;flex-direction:column;gap:7px}
+  .log-version{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--ink)}
+  .log-date{font-size:9.5px;color:var(--muted-2)}
+  .log-tag{width:max-content;padding:2px 7px;border-radius:5px;background:rgba(138,180,255,.10);color:#b6c9ff;font-size:8px}
+  .log-body h3{margin:0 0 6px;font-size:15px;letter-spacing:-.02em}
+  .log-body p{margin:0;color:var(--muted);font-size:11.5px;line-height:1.8}
+  .log-changes{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+  .log-changes span{padding:3px 7px;border-radius:6px;background:rgba(255,255,255,.04);color:var(--muted);font-size:9px}
+  .log-side{text-align:right;color:var(--muted-2);font-family:var(--mono);font-size:8px;letter-spacing:.12em}
 
   /* 页脚 */
-  footer{margin-top:clamp(70px,8vw,110px);border-top:1px solid var(--line);padding:30px 0 38px}
+  footer{margin-top:clamp(88px,10vw,140px);border-top:1px solid var(--line-soft);padding:32px 0 40px}
   .foot{display:flex;align-items:flex-start;justify-content:space-between;gap:28px;flex-wrap:wrap}
   .foot-left{display:flex;align-items:center;gap:11px}
   .foot-left img{width:28px;height:28px}
   .foot-left b{display:block;font-size:12px;letter-spacing:-.02em}
   .foot-left span{display:block;margin-top:3px;color:var(--muted-2);font-size:9px}
-  .foot-right{display:flex;gap:22px;flex-wrap:wrap;color:var(--muted-2);font-size:10px;line-height:1.8}
-  .foot-right a:hover{color:var(--ink)}
-  .foot-note{margin-top:18px;color:var(--muted-2);font-size:9px;line-height:1.7}
+  .foot-links{display:flex;gap:22px;flex-wrap:wrap;color:var(--muted-2);font-size:10px}
+  .foot-links a:hover{color:var(--ink)}
+  .foot-note{margin-top:18px;color:var(--muted-2);font-size:8.5px;line-height:1.7}
+  .foot-version{color:var(--muted-2);font-family:var(--mono);font-size:8px;margin-top:5px}
 
   /* 安卓提示 */
-  .notice-mask{position:fixed;inset:0;z-index:1000;display:none;place-items:center;padding:18px;
-    background:rgba(8,14,26,.44);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  .notice-mask{position:fixed;inset:0;z-index:1000;display:none;place-items:center;padding:18px;background:rgba(3,5,12,.66);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
   .notice-mask.open{display:grid;animation:fade .24s ease both}
-  .notice{width:min(430px,100%);border-radius:22px;background:#fbfcff;border:1px solid rgba(255,255,255,.9);
-    box-shadow:0 36px 100px rgba(5,12,28,.34);padding:24px 24px 18px;position:relative;color:var(--ink);animation:pop .32s var(--ease) both}
-  .notice-close{position:absolute;right:12px;top:12px;width:30px;height:30px;border:0;border-radius:50%;
-    background:rgba(12,23,42,.055);color:var(--muted);font-size:15px;display:grid;place-items:center}
-  .notice-close:hover{background:rgba(12,23,42,.1);color:var(--ink)}
-  .notice-badge{display:inline-flex;align-items:center;gap:7px;height:25px;padding:0 9px;border-radius:999px;
-    background:rgba(255,143,182,.12);color:#b84e77;font-size:9.5px;font-weight:700}
-  .notice-badge i{width:5px;height:5px;border-radius:50%;background:#e57fa4}
-  .notice h3{margin:14px 0 0;font-size:23px;letter-spacing:-.04em}
-  .notice p{margin:8px 0 0;color:var(--muted);font-size:12px;line-height:1.8}
-  .notice-actions{display:flex;margin-top:18px;justify-content:flex-end}
-  .notice-actions .btn{height:38px;border-radius:10px;font-size:11.5px}
-  @keyframes fade{from{opacity:0}to{opacity:1}}
-  @keyframes pop{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+  .notice{width:min(430px,100%);border-radius:22px;background:linear-gradient(145deg,#111827,#080d18);border:1px solid rgba(255,255,255,.14);
+    box-shadow:0 40px 100px rgba(0,0,0,.5);padding:25px 24px 18px;position:relative;color:var(--ink);animation:pop .32s var(--ease) both}
+  .notice-close{position:absolute;right:12px;top:12px;width:30px;height:30px;border:0;border-radius:50%;background:rgba(255,255,255,.06);color:var(--muted);font-size:15px;display:grid;place-items:center}
+  .notice-close:hover{background:rgba(255,255,255,.12);color:var(--ink)}
+  .notice-badge{display:inline-flex;align-items:center;gap:7px;height:25px;padding:0 9px;border-radius:999px;background:rgba(255,169,205,.10);color:#ffb7d2;font-size:9px;font-weight:700}
+  .notice-badge i{width:5px;height:5px;border-radius:50%;background:#ff9dc4}
+  .notice h3{margin:15px 0 0;font-size:23px;letter-spacing:-.04em}
+  .notice p{margin:9px 0 0;color:var(--muted);font-size:11.5px;line-height:1.85}
+  .notice-actions{display:flex;justify-content:flex-end;margin-top:18px}
+  .notice-actions .btn{height:38px;border-radius:10px;font-size:11px}
 
-  /* 响应式 */
-  @media(max-width:980px){
-    .hero-grid{grid-template-columns:1fr;gap:38px;min-height:0}
-    .hero-copy{max-width:640px}
-    .hero-visual{max-width:660px;margin:0 auto;width:100%}
-    .section-head{grid-template-columns:1fr;gap:14px}
-    .section-head p{justify-self:start;text-align:left;max-width:620px}
-    .feature-grid{grid-template-columns:1fr 1fr}
-    .flow{grid-template-columns:1fr}
-    .download-inner{grid-template-columns:1fr;gap:24px}
-    .download-panel{max-width:420px}
+  @keyframes aurora{0%{transform:translate3d(-6%,-3%,0) scale(1)}50%{transform:translate3d(4%,4%,0) scale(1.12)}100%{transform:translate3d(-2%,7%,0) scale(.98)}}
+  @keyframes title-in{to{transform:translateY(0)}}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  @keyframes orbit-spin{to{transform:rotateX(68deg) rotateZ(376deg)}}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.72);opacity:.6}}
+  @keyframes node-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.7);opacity:.55}}
+  @keyframes shine{0%,55%{transform:translateX(-120%)}75%,100%{transform:translateX(120%)}}
+  @keyframes glow-breathe{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.08);opacity:1}}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  @keyframes pop{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
+
+  @media(max-width:1040px){
+    .hero-grid{grid-template-columns:1fr;gap:30px}
+    .product-stage{min-height:520px;margin-top:10px}
+    .app-frame{max-width:700px}
+    .float-java{left:2%}
+    .float-mem{right:2%}
+    .section-head{grid-template-columns:1fr;gap:18px}
+    .section-head p{justify-self:start;text-align:left;max-width:640px}
+    .b1,.b2,.b3,.b4{grid-column:span 6}
+    .setup-split{grid-template-columns:1fr;gap:36px}
+    .download-inner{grid-template-columns:1fr;gap:26px}
+    .download-panel{max-width:430px}
+    .log-row{grid-template-columns:120px minmax(0,1fr)}
+    .log-side{display:none}
   }
   @media(max-width:720px){
     :root{--wrap:calc(100% - 32px)}
-    .nav-inner{height:62px;gap:12px}
+    .nav-inner{height:64px;gap:12px}
     .nav-links{display:none}
-    .nav-right .version-pill{display:none}
-    .brand-name{font-size:14px}
+    .version-pill{display:none}
     .nav-cta{height:34px;font-size:11px;padding:0 12px}
-    .hero{padding-top:42px}
-    .hero h1{font-size:clamp(38px,10vw,54px)}
-    .hero-copy{font-size:13.5px}
-    .hero-actions .btn{height:46px;width:100%;padding:0 16px}
-    .float-card{display:none}
-    .device{transform:none}
-    .stat-strip{grid-template-columns:1fr 1fr}
-    .stat{border-bottom:1px solid var(--line)}
-    .stat:nth-child(2){border-right:0}
-    .stat:nth-child(3),.stat:nth-child(4){border-bottom:0}
-    .feature-grid{grid-template-columns:1fr}
-    .feature{min-height:0}
-    .log-item{grid-template-columns:1fr;gap:10px}
-    .download-card{border-radius:22px;padding:24px 20px}
-    .download-inner{gap:20px}
-    .download-panel{max-width:none}
+    .hero{padding-top:112px;min-height:0}
+    .hero h1{font-size:clamp(40px,11vw,58px)}
+    .hero-sub{font-size:13.5px}
+    .hero-actions .btn{width:100%;height:47px;padding:0 16px}
+    .product-stage{min-height:0;margin-top:18px;padding:10px 0}
+    .app-frame{transform:none;border-radius:16px}
+    .app-frame::before{inset:-14px -10px}
+    .float{display:none}
+    .orbit.one{width:86vw;height:86vw}
+    .orbit.two{width:68vw;height:68vw}
+    .orbit.three{width:52vw;height:52vw}
+    .hero-bottom{flex-direction:column;align-items:flex-start;gap:16px}
+    .hero-stats{gap:22px}
+    .hero-stat{text-align:left}
+    .ticker{margin-top:35px;height:50px}
+    .section{padding-top:74px}
+    .section h2{font-size:clamp(29px,8vw,40px)}
+    .b1,.b2,.b3,.b4{grid-column:span 12}
+    .bento-item{min-height:0;padding:22px 20px}
+    .setup-copy h2{font-size:clamp(28px,8vw,38px)}
+    .setup-tabs{display:none}
+    .download-card{border-radius:22px;padding:25px 20px}
     .download-actions .btn{width:100%}
-    .foot{padding-bottom:8px}
+    .download-panel{max-width:none}
+    .log-row{grid-template-columns:1fr;gap:10px}
+    .log-meta{flex-direction:row;align-items:center;gap:10px}
+    .foot{padding-bottom:6px}
+    .spotlight{display:none}
   }
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
-    .reveal{opacity:1;transform:none;transition:none}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+    .reveal{opacity:1;transform:none}
+    .hero h1 .line span{transform:none}
   }
 </style>
 </head>
 <body>
+<div class="progress"><i id="scrollBar"></i></div>
+<div class="spotlight" id="spotlight"></div>
+<canvas id="stars"></canvas>
+<div class="aurora"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
 
 <!-- ============ 导航 ============ -->
-<header class="nav">
+<header class="site-head" id="siteHead">
   <div class="wrap nav-inner">
     <a class="brand" href="#top" aria-label="星云启动器首页">
       <span class="brand-mark"><img src="assets/icon-256.png" alt="星云启动器图标"></span>
@@ -342,13 +407,13 @@
     </a>
     <nav class="nav-links" aria-label="主导航">
       <a href="#features">能做什么</a>
-      <a href="#flow">怎么用</a>
+      <a href="#setup">开机向导</a>
       <a href="#download">下载</a>
       <a href="#log">更新日志</a>
     </nav>
     <div class="nav-right">
       <span class="version-pill"><i></i>Windows 1.0.94</span>
-      <a class="btn btn-dark nav-cta" href="https://github.com/BlockVibe001/cm-launcher/releases/download/v1.0.94/nebula-launcher-setup-1.0.94.exe" download>
+      <a class="btn btn-primary nav-cta" href="https://github.com/BlockVibe001/cm-launcher/releases/download/v1.0.94/nebula-launcher-setup-1.0.94.exe" download>
         下载
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
       </a>
@@ -361,20 +426,23 @@
   <section class="hero">
     <div class="wrap">
       <div class="hero-grid">
-        <div class="reveal in">
-          <span class="eyebrow"><i></i>MINECRAFT LAUNCHER · WINDOWS</span>
-          <h1>下一局，<span class="thin">轻一点。</span></h1>
-          <p class="hero-copy">
+        <div class="hero-copy">
+          <span class="eyebrow"><i class="dot"></i>Minecraft Launcher · Windows</span>
+          <h1 class="hero-title">
+            <span class="line"><span>把方块世界，</span></span>
+            <span class="line"><span>装进一束<em>星云</em>。</span></span>
+          </h1>
+          <p class="hero-sub">
             版本、模组、联机、更新，收进一块安静的面板。<b>不绑星云账号，配置留在本机。</b>
             打开，选一个版本，直接进入方块世界。
           </p>
           <div class="hero-actions">
-            <a class="btn btn-dark" href="https://github.com/BlockVibe001/cm-launcher/releases/download/v1.0.94/nebula-launcher-setup-1.0.94.exe" download>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v18H6.5A2.5 2.5 0 0 1 4 18.5v-13Z"/><path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H19"/></svg>
+            <a class="btn btn-primary" href="https://github.com/BlockVibe001/cm-launcher/releases/download/v1.0.94/nebula-launcher-setup-1.0.94.exe" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
               下载 Windows 版
-              <span style="font-size:10.5px;font-weight:500;color:rgba(255,255,255,.55);margin-left:2px">1.0.94</span>
+              <span style="font-size:10px;font-weight:500;opacity:.55;margin-left:2px">1.0.94</span>
             </a>
-            <button class="btn btn-light" type="button" data-android>
+            <button class="btn btn-ghost" type="button" data-android>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="2.5" width="12" height="19" rx="2.6"/><path d="M10 18.5h4"/></svg>
               Android 版
             </button>
@@ -386,37 +454,48 @@
           </div>
         </div>
 
-        <div class="hero-visual reveal in delay-1">
-          <div class="device">
-            <div class="device-bar"><i></i><i></i><i></i><span>NEBULA / HOME</span></div>
+        <div class="product-stage">
+          <i class="orbit one"></i><i class="orbit two"></i><i class="orbit three"></i>
+          <div class="product-glow"></div>
+          <div class="app-frame" id="appFrame">
+            <div class="app-bar"><i></i><i></i><i></i><span>NEBULA / HOME</span><span class="live">LIVE</span></div>
             <img src="assets/launcher-home.jpg" alt="星云启动器主界面截图">
           </div>
-          <div class="float-card float-java">
-            <span class="fc-icon">☕</span>
-            <span><span class="fc-title">Java 环境</span><br><span class="fc-value">Java 21 已就绪</span></span>
-          </div>
-          <div class="float-card float-mem">
-            <span class="fc-icon">▤</span>
-            <span><span class="fc-title">内存推荐</span><br><span class="fc-value">3.5 GB</span></span>
-          </div>
-          <div class="float-card float-ok">
-            <span class="fc-icon">✓</span>
-            <span class="fc-value">本地配置已保存</span>
-          </div>
+          <div class="float float-java"><span class="fi">☕</span><span><span class="ft">Java 环境</span><br><span class="fv">Java 21 已就绪</span></span></div>
+          <div class="float float-mem"><span class="fi">▤</span><span><span class="ft">内存推荐</span><br><span class="fv">3.5 GB</span></span></div>
+          <div class="float float-save"><span class="fi">✓</span><span class="fv">本地配置已保存</span></div>
         </div>
       </div>
 
-      <div class="reveal in delay-2">
-        <div class="stat-strip">
-          <div class="stat"><b>1.0.94</b><span>Windows x64</span></div>
-          <div class="stat"><b>4 步</b><span>首次开机设置</span></div>
-          <div class="stat"><b>0</b><span>广告与捆绑</span></div>
-          <div class="stat"><b>本地</b><span>账号与配置优先</span></div>
+      <div class="hero-bottom">
+        <div class="hero-note"><i></i>SCROLL TO EXPLORE</div>
+        <div class="hero-stats">
+          <div class="hero-stat"><b>1.0.94</b><span>WINDOWS X64</span></div>
+          <div class="hero-stat"><b>4 步</b><span>FIRST-RUN SETUP</span></div>
+          <div class="hero-stat"><b>0</b><span>ADS & BUNDLES</span></div>
+          <div class="hero-stat"><b>本地</b><span>PROFILE STAYS HOME</span></div>
         </div>
-        <div class="scroll-note"><i></i>SCROLL TO EXPLORE</div>
       </div>
     </div>
   </section>
+
+  <!-- 跑马灯 -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ticker-item"><i></i>Java 8 / 17 / 21 / 25</span>
+      <span class="ticker-item"><i></i>Fabric / Forge / NeoForge</span>
+      <span class="ticker-item"><i></i>Modrinth</span>
+      <span class="ticker-item"><i></i>EasyTier 联机</span>
+      <span class="ticker-item"><i></i>本地优先</span>
+      <span class="ticker-item"><i></i>一键备份</span>
+      <span class="ticker-item"><i></i>Java 8 / 17 / 21 / 25</span>
+      <span class="ticker-item"><i></i>Fabric / Forge / NeoForge</span>
+      <span class="ticker-item"><i></i>Modrinth</span>
+      <span class="ticker-item"><i></i>EasyTier 联机</span>
+      <span class="ticker-item"><i></i>本地优先</span>
+      <span class="ticker-item"><i></i>一键备份</span>
+    </div>
+  </div>
 
   <!-- ============ 特性 ============ -->
   <section class="section" id="features">
@@ -424,82 +503,113 @@
       <div class="section-head reveal">
         <div>
           <span class="kicker">01 / 核心</span>
-          <h2>不是更多按钮，<br>是更短的路。</h2>
+          <h2>不是更多按钮，<br>是更短的<em>路</em>。</h2>
         </div>
         <p>把找版本、装资源、开房间、查更新这些重复动作压进一条流程。你只需要决定玩什么。</p>
       </div>
-      <div class="feature-grid">
-        <article class="card feature reveal">
-          <div class="feature-top"><span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"/><path d="m3 12 9 4.5 9-4.5M3 16.5 12 21l9-4.5"/></svg></span><span class="feature-no">01 / VERSIONS</span></div>
+      <div class="bento">
+        <article class="card bento-item b1 card-hover reveal">
+          <div class="bento-head"><span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"/><path d="m3 12 9 4.5 9-4.5M3 16.5 12 21l9-4.5"/></svg></span><span class="bento-no">01 / VERSIONS</span></div>
           <h3>版本，一处就够</h3>
           <p>Java 版与基岩版放在同一页，安装、切换、补依赖一次完成。不再在三个网页之间核对版本号。</p>
-          <div class="feature-list"><span>Java 版</span><span>基岩版</span><span>Forge</span><span>Fabric</span></div>
+          <div class="bento-visual">
+            <div class="version-panel">
+              <div class="vp-row"><span class="tag">FABRIC</span><span class="name">Java 1.21.1</span><span class="status">READY</span></div>
+              <div class="vp-row"><span class="tag">NEOFORGE</span><span class="name">Java 1.20.1</span><span class="status">READY</span></div>
+              <div class="vp-row"><span class="tag">VANILLA</span><span class="name">基岩版 1.21</span><span class="status">READY</span></div>
+            </div>
+          </div>
         </article>
 
-        <article class="card feature reveal delay-1">
-          <div class="feature-top"><span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></span><span class="feature-no">02 / RESOURCES</span></div>
+        <article class="card bento-item b2 card-hover reveal delay-1">
+          <div class="bento-head"><span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></span><span class="bento-no">02 / RESOURCES</span></div>
           <h3>资源，一次搜完</h3>
           <p>模组、整合包、光影、资源包、数据包，一个搜索框直连 Modrinth，按加载器和游戏版本筛。</p>
-          <div class="feature-list"><span>模组</span><span>整合包</span><span>光影</span><span>资源包</span></div>
+          <div class="bento-visual">
+            <div class="resource-cloud"><span class="active">模组</span><span>整合包</span><span>光影</span><span>资源包</span><span>数据包</span><span>Sodium · 1.21.1</span></div>
+          </div>
         </article>
 
-        <article class="card feature reveal delay-2">
-          <div class="feature-top"><span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 0 1 8-8h1"/><path d="M20 12a8 8 0 0 1-8 8h-1"/><circle cx="12" cy="12" r="2.5"/><path d="M3 7v4h4M21 17v-4h-4"/></svg></span><span class="feature-no">03 / TOGETHER</span></div>
+        <article class="card bento-item b3 card-hover reveal delay-1">
+          <div class="bento-head"><span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 0 1 8-8h1"/><path d="M20 12a8 8 0 0 1-8 8h-1"/><circle cx="12" cy="12" r="2.5"/><path d="M3 7v4h4M21 17v-4h-4"/></svg></span><span class="bento-no">03 / TOGETHER</span></div>
           <h3>联机，少折腾</h3>
           <p>内置联机通道，创建房间后把房间码发给朋友。没有公网 IP 也能一起进同一个世界。</p>
-          <div class="feature-list"><span>房间码</span><span>内置通道</span><span>免公网 IP</span></div>
+          <div class="bento-visual">
+            <div class="net-map"><span class="net-line l1"></span><span class="net-line l2"></span><i class="net-node n1"></i><i class="net-node n2"></i><i class="net-node n3"></i><span class="net-label">ROOM CODE · 6F2A9C</span></div>
+          </div>
+        </article>
+
+        <article class="card bento-item b4 card-hover reveal delay-2">
+          <div class="bento-head"><span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M3 12h18"/><path d="M4 8h16M4 16h16"/></svg></span><span class="bento-no">04 / FIRST RUN</span></div>
+          <h3>第一次打开，它先帮你检查</h3>
+          <p>Java、内存、目录、外观一次配好；检测到多个 Java 也能自己换，或者直接下载新的版本。</p>
+          <div class="bento-visual">
+            <div class="version-panel">
+              <div class="vp-row"><span class="tag">STEP 01</span><span class="name">星云打招呼</span><span class="status">CHECK</span></div>
+              <div class="vp-row"><span class="tag">STEP 02</span><span class="name">Java 8 / 17 / 21 / 25</span><span class="status">READY</span></div>
+              <div class="vp-row"><span class="tag">STEP 04</span><span class="name">目录 / 外观 / 开机自启</span><span class="status">SAVE</span></div>
+            </div>
+          </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ============ 流程 ============ -->
-  <section class="section" id="flow">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div>
-          <span class="kicker">02 / 开机</span>
-          <h2>第一次打开，<br>它先帮你检查。</h2>
+  <!-- ============ 开机向导预览 ============ -->
+  <section class="section" id="setup">
+    <div class="wrap setup-split">
+      <div class="setup-copy reveal">
+        <span class="kicker">02 / 开机</span>
+        <h2>像新手机开机，<br>四步就<em>顺手</em>。</h2>
+        <p>免责声明同意后，星云会带你做一次基础检查。全部在本机完成，不上传你的数据；之后都能在设置里改。</p>
+        <div class="setup-points">
+          <div class="setup-point"><i>01</i>欢迎与说明<span class="mini">WELCOME</span></div>
+          <div class="setup-point"><i>02</i>扫描 / 选择 / 下载 Java<span class="mini">JAVA</span></div>
+          <div class="setup-point"><i>03</i>按机器推荐内存<span class="mini">MEMORY</span></div>
+          <div class="setup-point"><i>04</i>目录 / 外观 / 开机自启<span class="mini">BASIC</span></div>
         </div>
-        <p>像新手机开机一样，四步把 Java、内存、目录和外观配好。全部在本机完成，不上传数据。</p>
       </div>
-      <div class="flow">
-        <div class="card flow-steps reveal">
-          <div class="flow-step"><span class="flow-num">01</span><div><h3>星云打个招呼</h3><p>先说明要检查什么，同意后开始，不跳转到别的页面。</p></div></div>
-          <div class="flow-step"><span class="flow-num">02</span><div><h3>找到 Java，也给你别的选择</h3><p>自动扫描已安装版本；想换，可以直接下载 Java 8 / 17 / 21 / 25。</p></div></div>
-          <div class="flow-step"><span class="flow-num">03</span><div><h3>内存按机器来</h3><p>根据物理内存和当前可用内存给推荐值，也可以交给启动器自动分配。</p></div></div>
-          <div class="flow-step"><span class="flow-num">04</span><div><h3>目录、外观、开机自启</h3><p>顺手配好，之后都能在设置里改。点完成，直接进主页。</p></div></div>
+
+      <div class="setup-shell reveal delay-1" id="setupDemo">
+        <div class="setup-top"><i></i><i></i><i></i><span>FIRST RUN · NEBULA</span></div>
+        <div class="setup-window">
+          <div class="setup-stepline"><i class="on"></i><i></i><i></i><i></i></div>
+          <div class="setup-kicker" id="setupKicker">STEP 01 / 04 · WELCOME</div>
+          <h3 class="setup-title" id="setupTitle">你好，我是星云。</h3>
+          <p class="setup-desc" id="setupDesc">接下来由我帮你做一下基本检查：Java、内存，还有几项基础设置。全部在本机完成。</p>
+          <div class="setup-options" id="setupOptions"><span class="sel">☕ Java</span><span>▤ 内存</span><span>⚙ 基础</span></div>
+          <div class="setup-footer"><span>星云启动器 · 第一次启动</span><b id="setupAction">开始检查 →</b></div>
         </div>
-        <div class="card flow-visual reveal delay-1">
-          <div class="flow-window">
-            <div class="tiny-bar"><i></i><i></i><i></i></div>
-            <img src="assets/launcher-home.jpg" alt="星云启动器界面">
-          </div>
+        <div class="setup-tabs">
+          <button class="on" data-setup-tab="0">欢迎</button>
+          <button data-setup-tab="1">Java</button>
+          <button data-setup-tab="2">内存</button>
+          <button data-setup-tab="3">基础</button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============ 下载 ============ -->
-  <section class="download" id="download">
+  <section class="section" id="download">
     <div class="wrap">
       <div class="download-card reveal">
         <div class="download-inner">
-          <div>
+          <div class="download-copy">
             <span class="kicker">03 / 下载</span>
-            <h2>Windows 版，<br>现在就能玩。</h2>
-            <p>安装包只包含程序本身，不带账号、存档和下载记录。首次打开会走一遍开机向导。</p>
+            <h2>Windows 版，<br>现在就能<em>玩</em>。</h2>
+            <p>安装包只包含程序本身，不带账号、存档和下载记录。第一次打开会走一遍开机向导。</p>
             <div class="download-actions">
-              <a class="btn btn-primary" href="https://github.com/BlockVibe001/cm-launcher/releases/download/v1.0.94/nebula-launcher-setup-1.0.94.exe" download>
+              <a class="btn dl-main" href="https://github.com/BlockVibe001/cm-launcher/releases/download/v1.0.94/nebula-launcher-setup-1.0.94.exe" download>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
                 直接下载 Windows 1.0.94
               </a>
-              <button class="btn btn-android" type="button" data-android>
+              <button class="btn dl-android" type="button" data-android>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="2.5" width="12" height="19" rx="2.6"/><path d="M10 18.5h4"/></svg>
                 Android 版 · 准备中
               </button>
             </div>
-            <div class="download-note">
+            <div class="download-mini">
               <span><i></i>Windows 10 / 11 · 64 位</span>
               <span><i></i>无需登录</span>
               <span><i></i>约 386 MB</span>
@@ -515,7 +625,7 @@
               <div class="download-row"><span>渠道</span><b>Stable</b></div>
             </div>
             <div class="download-hash">SHA-256 3B337A454B9C2327808869EB56BABA1D911ABC2B4B405AE2208A49F065230D58</div>
-            <div style="margin-top:10px;font-size:9px;color:rgba(255,255,255,.34);line-height:1.6">第三方组件许可见安装目录 third-party-licenses。</div>
+            <div class="download-license">第三方组件许可见安装目录 third-party-licenses。</div>
           </aside>
         </div>
       </div>
@@ -530,35 +640,37 @@
           <span class="kicker">04 / 更新</span>
           <h2>这个版本，<br>改了什么。</h2>
         </div>
-        <p>正式版按稳定优先；测试版和手机版走单独通道，不会被这个页面的按钮混在一起。</p>
+        <p>正式版、测试版、手机版各走各的目录，不会互相覆盖；手机版目前仍在准备中。</p>
       </div>
-      <div class="log reveal">
-        <div class="log-item">
+      <div class="log-list reveal">
+        <div class="log-row">
           <div class="log-meta"><span class="log-version">v1.0.94</span><span class="log-date">2026-11-22</span><span class="log-tag">正式版</span></div>
           <div class="log-body">
             <h3>首次启动向导</h3>
             <p>第一次打开不再是单独的内存弹窗，而是四步开机设置：打招呼、Java、内存、基础设置。</p>
-            <div class="changes"><span>Java 8 / 17 / 21 / 25 下载</span><span>内存推荐</span><span>目录 / 外观 / 自启</span><span>旧教程不再叠加</span></div>
+            <div class="log-changes"><span>Java 8 / 17 / 21 / 25 下载</span><span>内存推荐</span><span>目录 / 外观 / 自启</span><span>旧教程不再叠加</span></div>
           </div>
+          <div class="log-side">LATEST · STABLE</div>
         </div>
-        <div class="log-item">
+        <div class="log-row">
           <div class="log-meta"><span class="log-version">v1.0.93</span><span class="log-date">2026-11-22</span><span class="log-tag">正式版</span></div>
           <div class="log-body">
             <h3>合规修复</h3>
             <p>补齐陶瓦、EasyTier、WinDivert、Wintun 的许可证与源码说明；不再分发 Npcap 的 Packet.dll。</p>
-            <div class="changes"><span>许可证</span><span>Npcap 入口</span><span>第三方许可页</span></div>
+            <div class="log-changes"><span>许可证</span><span>Npcap 入口</span><span>第三方许可页</span></div>
           </div>
+          <div class="log-side">STABLE</div>
         </div>
-        <div class="log-item">
+        <div class="log-row">
           <div class="log-meta"><span class="log-version">v1.0.92</span><span class="log-date">2026-11-22</span><span class="log-tag">正式版</span></div>
           <div class="log-body">
             <h3>图标与版本信息</h3>
             <p>程序图标和版本信息写进 exe，桌面、任务栏和快捷方式不再显示 Electron 默认图标。</p>
-            <div class="changes"><span>程序图标</span><span>版本信息</span></div>
+            <div class="log-changes"><span>程序图标</span><span>版本信息</span></div>
           </div>
+          <div class="log-side">STABLE</div>
         </div>
       </div>
-      <a class="more-log" href="#top">回到顶部 <span>↑</span></a>
     </div>
   </section>
 </main>
@@ -568,11 +680,11 @@
     <div class="foot">
       <div class="foot-left">
         <img src="assets/icon-64.png" alt="星云启动器">
-        <div><b>星云启动器</b><span>NEBULA LAUNCHER · 本地优先</span></div>
+        <div><b>星云启动器</b><span>NEBULA LAUNCHER · 本地优先</span><em class="foot-version">v1.0.94</em></div>
       </div>
-      <div class="foot-right">
+      <div class="foot-links">
         <a href="#features">能做什么</a>
-        <a href="#flow">怎么用</a>
+        <a href="#setup">开机向导</a>
         <a href="#download">下载</a>
         <a href="#log">更新日志</a>
       </div>
@@ -588,31 +700,166 @@
     <span class="notice-badge"><i></i>Android · 准备中</span>
     <h3 id="androidTitle">安卓版暂时还没做好</h3>
     <p>手机版还在整理安装包和首次启动流程，暂时不开放下载。Windows 版已经可以正常使用。</p>
-    <div class="notice-actions"><button class="btn btn-dark" type="button" data-notice-close>知道了</button></div>
+    <div class="notice-actions"><button class="btn btn-primary" type="button" data-notice-close>知道了</button></div>
   </div>
 </div>
 
 <script>
   (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* 滚动进度 + 导航 */
+    var head = document.getElementById('siteHead');
+    var bar = document.getElementById('scrollBar');
+    function onScroll() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      var p = max > 0 ? h.scrollTop / max : 0;
+      if (bar) bar.style.width = (p * 100) + '%';
+      if (head) head.classList.toggle('scrolled', h.scrollTop > 18);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* 鼠标聚光 */
+    var spot = document.getElementById('spotlight');
+    if (spot && !reduce) {
+      var sx = 0, sy = 0, cx = 0, cy = 0;
+      window.addEventListener('pointermove', function (e) {
+        sx = e.clientX; sy = e.clientY;
+        spot.style.opacity = '.14';
+      }, { passive: true });
+      (function loop() {
+        cx += (sx - cx) * .12;
+        cy += (sy - cy) * .12;
+        spot.style.left = cx + 'px';
+        spot.style.top = cy + 'px';
+        requestAnimationFrame(loop);
+      })();
+    }
+
+    /* 星尘画布 */
+    var canvas = document.getElementById('stars');
+    if (canvas) {
+      var ctx = canvas.getContext('2d');
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var stars = [];
+      var w = 0, h = 0;
+      function resize() {
+        w = canvas.clientWidth; h = canvas.clientHeight;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        var count = Math.min(130, Math.floor(w * h / 16000));
+        stars = [];
+        for (var i = 0; i < count; i++) {
+          stars.push({
+            x: Math.random() * w, y: Math.random() * h,
+            r: Math.random() * 1.25 + .35,
+            a: Math.random() * .55 + .15,
+            s: Math.random() * .14 + .03,
+            p: Math.random() * Math.PI * 2
+          });
+        }
+      }
+      function draw(t) {
+        ctx.clearRect(0, 0, w, h);
+        for (var i = 0; i < stars.length; i++) {
+          var s = stars[i];
+          if (!reduce) {
+            s.y -= s.s;
+            if (s.y < -4) { s.y = h + 4; s.x = Math.random() * w; }
+          }
+          var tw = reduce ? s.a : s.a * (.7 + .3 * Math.sin(t / 900 + s.p));
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(196,214,255,' + tw + ')';
+          ctx.fill();
+        }
+        if (!reduce) requestAnimationFrame(draw);
+      }
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+      requestAnimationFrame(draw);
+    }
+
+    /* 产品鼠标视差 */
+    var frame = document.getElementById('appFrame');
+    var stage = document.querySelector('.product-stage');
+    if (frame && stage && !reduce) {
+      stage.addEventListener('pointermove', function (e) {
+        var r = stage.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - .5;
+        var y = (e.clientY - r.top) / r.height - .5;
+        frame.style.transform = 'rotateY(' + (-8 + x * 8) + 'deg) rotateX(' + (3 - y * 6) + 'deg)';
+      });
+      stage.addEventListener('pointerleave', function () {
+        frame.style.transform = 'rotateY(-8deg) rotateX(3deg)';
+      });
+    }
+
+    /* 滚动出现 */
     var reveals = document.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
         });
-      }, { threshold: .12, rootMargin: '0px 0px -8% 0px' });
+      }, { threshold: .10, rootMargin: '0px 0px -6% 0px' });
       reveals.forEach(function (el) { io.observe(el); });
     } else {
       reveals.forEach(function (el) { el.classList.add('in'); });
     }
 
+    /* 开机向导预览自动轮播 */
+    var demo = document.getElementById('setupDemo');
+    var steps = [
+      { k: 'STEP 01 / 04 · WELCOME', t: '你好，我是星云。', d: '接下来由我帮你做一下基本检查：Java、内存，还有几项基础设置。全部在本机完成。', o: ['☕ Java', '▤ 内存', '⚙ 基础'], a: '开始检查 →' },
+      { k: 'STEP 02 / 04 · JAVA', t: 'Java 环境，先扫一遍。', d: '已经装了 Java 21 和 17。想用哪个就选哪个；不想用现有的，也可以直接下载 Java 8 / 17 / 21 / 25。', o: ['Java 21 · 已检测', 'Java 17 · 已检测', 'Java 8 / 25 · 下载'], a: '下一步 →' },
+      { k: 'STEP 03 / 04 · MEMORY', t: '内存，按这台机器来。', d: '系统 11.9 GB，当前可用 4.2 GB。推荐给 Minecraft 3.5 GB，也可以交给启动器自动分配。', o: ['推荐值 3.5 GB', '自动分配', '-Xmx 只是上限'], a: '下一步 →' },
+      { k: 'STEP 04 / 04 · BASIC', t: '最后几项，顺手配好。', d: '游戏目录、深色 / 浅色 / 跟随系统，还有开机自启。完成后都还能在设置里改。', o: ['游戏目录', '深色外观', '开机自启'], a: '完成并进入 →' }
+    ];
+    var current = 0;
+    var timer = null;
+    function renderStep(i) {
+      current = i;
+      var s = steps[i];
+      var kicker = document.getElementById('setupKicker');
+      var title = document.getElementById('setupTitle');
+      var desc = document.getElementById('setupDesc');
+      var opts = document.getElementById('setupOptions');
+      var action = document.getElementById('setupAction');
+      if (!kicker) return;
+      kicker.textContent = s.k;
+      title.textContent = s.t;
+      desc.textContent = s.d;
+      action.textContent = s.a;
+      opts.innerHTML = s.o.map(function (x, idx) { return '<span class="' + (idx === 0 ? 'sel' : '') + '">' + x + '</span>'; }).join('');
+      document.querySelectorAll('.setup-stepline i').forEach(function (el, idx) { el.classList.toggle('on', idx <= i); });
+      document.querySelectorAll('[data-setup-tab]').forEach(function (el) { el.classList.toggle('on', Number(el.dataset.setupTab) === i); });
+    }
+    function nextStep() { renderStep((current + 1) % steps.length); }
+    if (demo) {
+      timer = setInterval(nextStep, 4200);
+      demo.addEventListener('pointerenter', function () { clearInterval(timer); timer = null; });
+      demo.addEventListener('pointerleave', function () { if (!timer) timer = setInterval(nextStep, 4200); });
+      document.querySelectorAll('[data-setup-tab]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          renderStep(Number(btn.dataset.setupTab));
+          if (timer) { clearInterval(timer); timer = setInterval(nextStep, 4200); }
+        });
+      });
+    }
+
+    /* 安卓提示 */
     var notice = document.getElementById('androidNotice');
-    function openNotice() { notice.classList.add('open'); document.body.style.overflow = 'hidden'; }
-    function closeNotice() { notice.classList.remove('open'); document.body.style.overflow = ''; }
+    function openNotice() { if (!notice) return; notice.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeNotice() { if (!notice) return; notice.classList.remove('open'); document.body.style.overflow = ''; }
     document.querySelectorAll('[data-android]').forEach(function (btn) { btn.addEventListener('click', openNotice); });
     document.querySelectorAll('[data-notice-close]').forEach(function (btn) { btn.addEventListener('click', closeNotice); });
-    notice.addEventListener('click', function (e) { if (e.target === notice) closeNotice(); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && notice.classList.contains('open')) closeNotice(); });
+    if (notice) {
+      notice.addEventListener('click', function (e) { if (e.target === notice) closeNotice(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeNotice(); });
+    }
   })();
 </script>
 </body>
