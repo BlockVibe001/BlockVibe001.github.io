@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="星云启动器 1.0.92：Windows 端的 Minecraft 启动器。版本、资源、联机、更新收进一块安静的面板，本地优先，不绑账号。">
+<meta name="description" content="星云启动器 1.0.93：Windows 端的 Minecraft 启动器。版本、资源、联机、更新收进一块安静的面板，本地优先，不绑账号。">
 <meta name="theme-color" content="#080d18">
 <title>星云启动器 — 下一局，从星云着陆</title>
 <link rel="icon" href="assets/icon-64.png">
@@ -532,7 +532,7 @@
           <div class="eyebrow reveal">
             <span class="dot"></span>
             <span>MINECRAFT LAUNCHER</span>
-            <span class="pill">v1.0.92</span>
+            <span class="pill">v1.0.93</span>
           </div>
           <h1 class="reveal delay-1">
             <span class="line">下一局，</span>
@@ -540,8 +540,8 @@
           </h1>
           <p class="hero-sub reveal delay-2">版本、模组、联机、账号，收进一块安静的面板。<b>没有满屏广告，不绑星云账号，配置留在本机。</b>点一下，直接进方块世界。</p>
           <div class="hero-actions reveal delay-3">
-            <a class="btn btn-primary" href="https://github.com/BlockVibe001/cm-launcher/releases/download/v1.0.92/nebula-launcher-setup-1.0.92.exe" rel="noopener" id="win-download">
-              <span class="long">下载 Windows 版</span><span class="short">Windows 1.0.92</span>
+            <a class="btn btn-primary" href="https://github.com/BlockVibe001/cm-launcher/releases/download/v1.0.93/nebula-launcher-setup-1.0.93.exe" rel="noopener" id="win-download">
+              <span class="long">下载 Windows 版</span><span class="short">Windows 1.0.93</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v11m0 0 4-4m-4 4-4-4"/><path d="M5 19h14"/></svg>
             </a>
             <button class="btn btn-ghost" type="button" data-android-notice>
@@ -550,7 +550,7 @@
             </button>
           </div>
           <div class="hero-meta reveal delay-3">
-            <span><i></i>WINDOWS 1.0.92</span><span class="sep">·</span>
+            <span><i></i>WINDOWS 1.0.93</span><span class="sep">·</span>
             <span><i></i>ANDROID 暂未开放</span><span class="sep">·</span>
             <span>本地优先 · 无广告</span>
           </div>
@@ -571,7 +571,7 @@
       <div class="hero-foot">
         <div class="scroll"><i></i><span>SCROLL TO EXPLORE</span></div>
         <div class="hero-stats">
-          <div><b>1.0.92</b><span>WINDOWS</span></div>
+          <div><b>1.0.93</b><span>WINDOWS</span></div>
           <div><b>暂未开放</b><span>ANDROID</span></div>
           <div><b>0 广告</b><span>NO ADS</span></div>
         </div>
@@ -688,8 +688,8 @@
 
       <div class="log-list reveal delay-2">
         <article class="log">
-          <div class="log-meta"><b>v1.0.92</b><span class="new">NEW</span><span>2026-11-22</span><span>WINDOWS</span></div>
-          <div><h3>修复程序图标与版本信息</h3><p>打包时恢复写入 exe 资源，桌面、任务栏和快捷方式不再显示 Electron 默认原子图标；程序属性里的产品名和版本号也改为「星云启动器 1.0.92」。</p><a href="https://github.com/BlockVibe001/cm-launcher/releases/tag/v1.0.92" target="_blank" rel="noopener">查看 1.0.92 →</a></div>
+          <div class="log-meta"><b>v1.0.93</b><span class="new">NEW</span><span>2026-11-22</span><span>WINDOWS</span></div>
+          <div><h3>第三方许可证与 Npcap 合规修复</h3><p>补齐陶瓦 AGPL、EasyTier LGPL、WinDivert、Wintun 的许可证原文和源码说明；不再随包分发 Npcap 的 Packet.dll，改用系统已安装的 Npcap；联机页新增 Npcap 下载入口。</p><a href="https://github.com/BlockVibe001/cm-launcher/releases/tag/v1.0.93" target="_blank" rel="noopener">查看 1.0.93 →</a></div>
         </article>
         <article class="log">
           <div class="log-meta"><b>v1.0.91</b><span>2026-11-22</span><span>WINDOWS</span></div>
@@ -742,8 +742,8 @@
             </div>
           </div>
           <div class="download-actions">
-            <a class="btn btn-primary" href="https://github.com/BlockVibe001/cm-launcher/releases/download/v1.0.92/nebula-launcher-setup-1.0.92.exe" rel="noopener">
-              <span>Windows 1.0.92</span>
+            <a class="btn btn-primary" href="https://github.com/BlockVibe001/cm-launcher/releases/download/v1.0.93/nebula-launcher-setup-1.0.93.exe" rel="noopener">
+              <span>Windows 1.0.93</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v11m0 0 4-4m-4 4-4-4"/><path d="M5 19h14"/></svg>
             </a>
             <button class="btn btn-ghost" type="button" data-android-notice>
@@ -802,7 +802,7 @@
 
     var win = document.getElementById('win-download');
     if (win && /Windows/i.test(navigator.userAgent)) {
-      win.querySelector('.long').textContent = '下载 Windows 版 · 1.0.92';
+      win.querySelector('.long').textContent = '下载 Windows 版 · 1.0.93';
     }
 
     document.querySelectorAll('[data-copy]').forEach(function(btn){
