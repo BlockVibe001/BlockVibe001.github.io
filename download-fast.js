@@ -3,6 +3,7 @@
 
   var CDN_URL = 'https://aka.doubaocdn.com/s/0yrErgJznF';
   var GITHUB_URL = 'https://github.com/BlockVibe001/cm-launcher/releases/download/v1.0.94/nebula-launcher-setup-1.0.94.exe';
+  var GITHUB_LATEST = 'https://github.com/BlockVibe001/cm-launcher/releases/latest';
   var FILE_NAME = 'nebula-launcher-setup-1.0.94.exe';
   var EXPECTED_SIZE = 405383696;
   var CHUNK_SIZE = 8 * 1024 * 1024;
@@ -87,7 +88,7 @@
         '<div class="ndl-bar"><i></i></div>' +
         '<div class="ndl-meta"><span class="ndl-pct">0%</span><span class="ndl-speed">0.0 MB/s</span><span class="ndl-eta">剩余 --</span></div>' +
         '<div class="ndl-actions"><button type="button" class="ndl-cancel">取消下载</button></div>' +
-        '<div class="ndl-tip">下载时请保持页面打开。完成后双击安装包即可；高速节点不可用时会自动打开 GitHub 官方下载。</div>' +
+        '<div class="ndl-tip">下载时请保持页面打开。完成后双击安装包即可；高速节点不可用时会自动打开 GitHub 最新下载页。</div>' +
       '</div>';
     document.body.appendChild(overlay);
     overlay.querySelector('.ndl-cancel').addEventListener('click', function () {
@@ -135,8 +136,8 @@
       if (!old) {
         var fallback = document.createElement('a');
         fallback.className = 'ndl-fallback';
-        fallback.href = GITHUB_URL;
-        fallback.textContent = '改用 GitHub 官方下载（较慢）';
+        fallback.href = GITHUB_LATEST;
+        fallback.textContent = '打开 GitHub 最新下载页';
         actions.appendChild(fallback);
       }
     }
@@ -152,10 +153,10 @@
     if (redirecting) return;
     redirecting = true;
     active = false;
-    setOverlay('error', { message: (message || '高速通道不可用') + '，正在打开 GitHub 官方下载…' });
+    setOverlay('error', { message: (message || '高速通道不可用') + '，正在打开 GitHub 最新下载页…' });
     setTimeout(function () {
-      try { window.location.assign(GITHUB_URL); }
-      catch (e) { window.location.href = GITHUB_URL; }
+      try { window.location.assign(GITHUB_LATEST); }
+      catch (e) { window.location.href = GITHUB_LATEST; }
     }, 1200);
   }
 
@@ -299,7 +300,11 @@
         // 始终跟着当前页面上的版本走，后面换 1.0.96 / 1.0.97 不用再改脚本
         GITHUB_URL = a.href || GITHUB_URL;
         FILE_NAME = decodeURIComponent((a.href || '').split('/').pop()) || FILE_NAME;
-        if (!supported) return;
+        if (!supported) {
+          e.preventDefault();
+          window.location.href = GITHUB_LATEST;
+          return;
+        }
         e.preventDefault();
         startDownload(e);
       });
