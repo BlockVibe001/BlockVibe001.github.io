@@ -6,7 +6,7 @@
   var FILE_NAME = 'nebula-launcher-setup-1.0.94.exe';
   var EXPECTED_SIZE = 405383696;
   var CHUNK_SIZE = 16 * 1024 * 1024;
-  var WORKERS = 4;
+  var WORKERS = 8;
 
   var supported = typeof window.showSaveFilePicker === 'function';
   var active = false;
@@ -87,7 +87,7 @@
         '<div class="ndl-bar"><i></i></div>' +
         '<div class="ndl-meta"><span class="ndl-pct">0%</span><span class="ndl-speed">0.0 MB/s</span><span class="ndl-eta">剩余 --</span></div>' +
         '<div class="ndl-actions"><button type="button" class="ndl-cancel">取消下载</button></div>' +
-        '<div class="ndl-tip">下载时请保持页面打开。完成后双击安装包即可。</div>' +
+        '<div class="ndl-tip">下载时请保持页面打开。完成后双击安装包即可；高速节点不可用时会自动打开 GitHub 官方下载。</div>' +
       '</div>';
     document.body.appendChild(overlay);
     overlay.querySelector('.ndl-cancel').addEventListener('click', function () {
@@ -147,6 +147,18 @@
     active = false;
   }
 
+  var redirecting = false;
+  function redirectGithub(message) {
+    if (redirecting) return;
+    redirecting = true;
+    active = false;
+    setOverlay('error', { message: (message || '高速通道不可用') + '，正在打开 GitHub 官方下载…' });
+    setTimeout(function () {
+      try { window.location.assign(GITHUB_URL); }
+      catch (e) { window.location.href = GITHUB_URL; }
+    }, 1200);
+  }
+
   function parseTotal(res) {
     var range = res.headers.get('Content-Range') || '';
     var m = range.match(/\/(\d+)$/);
@@ -187,9 +199,8 @@
     } catch (e) {
       active = false;
       if (e && e.name === 'AbortError') return;
-      // 浏览器不支持或权限被拒绝：回到官方 GitHub 下载
-      setOverlay('start');
-      setOverlay('error', { message: '当前浏览器不支持高速保存，请用 Edge 或 Chrome 打开本页。' });
+      // 浏览器不支持或权限被拒绝：自动走 GitHub 官方下载，不再停在错误弹窗
+      redirectGithub('当前浏览器不支持高速保存');
       return;
     }
 
@@ -198,13 +209,21 @@
       writable = await handle.createWritable();
     } catch (e) {
       active = false;
-      setOverlay('error', { message: '无法写入文件，请换一个保存位置。' });
+      redirectGithub('无法写入保存位置');
       return;
     }
 
     setOverlay('start');
     var controller = new AbortController();
+    var lastProgressAt = Date.now();
+    var watchdog = setInterval(function () {
+      if (Date.now() - lastProgressAt < 15000) return;
+      clearInterval(watchdog);
+      redirectGithub('高速通道长时间没有响应');
+      controller.abort();
+    }, 5000);
     overlay._abort = function () {
+      clearInterval(watchdog);
       controller.abort();
       writable.abort().catch(function () {});
       active = false;
@@ -239,6 +258,7 @@
           var buf = await fetchRange(start, end, controller.signal);
           await writable.write({ type: 'write', position: start, data: buf });
           done += buf.byteLength;
+          lastProgressAt = Date.now();
           var now = Date.now();
           var elapsed = (now - started) / 1000;
           var speed = done / elapsed;
@@ -255,6 +275,7 @@
       }
 
       await Promise.all(Array.from({ length: WORKERS }, function () { return worker(); }));
+      clearInterval(watchdog);
       await writable.close();
       var file = await handle.getFile();
       if (file.size !== total) throw new Error('文件大小校验失败，请重新下载');
@@ -262,11 +283,11 @@
       active = false;
       setTimeout(function () { if (overlay && overlay.classList.contains('open')) closeOverlay(); }, 6000);
     } catch (e) {
+      clearInterval(watchdog);
       try { await writable.abort(); } catch (_) {}
       active = false;
       if (e.name === 'AbortError') return;
-      setOverlay('error', { message: (e.message || '下载失败') + '。可以重试或改用 GitHub 官方下载。' });
-      overlay._abort = closeOverlay;
+      redirectGithub((e.message || '下载失败'));
     }
   }
 
