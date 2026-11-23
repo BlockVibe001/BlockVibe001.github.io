@@ -5,7 +5,7 @@
   var GITHUB_URL = 'https://github.com/BlockVibe001/cm-launcher/releases/download/v1.0.94/nebula-launcher-setup-1.0.94.exe';
   var FILE_NAME = 'nebula-launcher-setup-1.0.94.exe';
   var EXPECTED_SIZE = 405383696;
-  var CHUNK_SIZE = 16 * 1024 * 1024;
+  var CHUNK_SIZE = 8 * 1024 * 1024;
   var WORKERS = 8;
 
   var supported = typeof window.showSaveFilePicker === 'function';
@@ -81,7 +81,7 @@
       '<div class="ndl-card">' +
         '<div class="ndl-head">' +
           '<div class="ndl-orb"><i></i><i></i><i></i></div>' +
-          '<div><div class="ndl-title">高速下载</div><div class="ndl-sub">星云启动器 1.0.94 · 386 MB · 全量安装包</div></div>' +
+          '<div><div class="ndl-title">高速下载</div><div class="ndl-sub">星云启动器 1.0.94 · 386 MB · 8 线程加速</div></div>' +
         '</div>' +
         '<div class="ndl-status" aria-live="polite">正在连接高速节点…</div>' +
         '<div class="ndl-bar"><i></i></div>' +
