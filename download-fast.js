@@ -292,10 +292,13 @@
   }
 
   function bind() {
-    var links = document.querySelectorAll('a[href*="nebula-launcher-setup-1.0.94.exe"]');
+    var links = document.querySelectorAll('a[href*="releases/download/"][href*="nebula-launcher-setup-"]');
     links.forEach(function (a) {
       a.addEventListener('click', function (e) {
         if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+        // 始终跟着当前页面上的版本走，后面换 1.0.96 / 1.0.97 不用再改脚本
+        GITHUB_URL = a.href || GITHUB_URL;
+        FILE_NAME = decodeURIComponent((a.href || '').split('/').pop()) || FILE_NAME;
         if (!supported) return;
         e.preventDefault();
         startDownload(e);
