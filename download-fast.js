@@ -2,9 +2,9 @@
   'use strict';
 
   var CDN_URL = 'https://aka.doubaocdn.com/s/vrmlwkVAlZ';
-  var GITHUB_URL = 'https://github.com/BlockVibe001/cm-launcher/releases/download/v1.0.96/nebula-launcher-setup-1.0.96.exe';
+  var GITHUB_URL = 'https://github.com/BlockVibe001/cm-launcher/releases/download/v1.0.97/nebula-launcher-setup-1.0.97.exe';
   var GITHUB_LATEST = 'https://github.com/BlockVibe001/cm-launcher/releases/latest';
-  var FILE_NAME = 'nebula-launcher-setup-1.0.96.exe';
+  var FILE_NAME = 'nebula-launcher-setup-1.0.97.exe';
   var EXPECTED_SIZE = 405330023;
   var CHUNK_SIZE = 8 * 1024 * 1024;
   var WORKERS = 8;
@@ -317,3 +317,4 @@
     bind();
   }
 })();
+
