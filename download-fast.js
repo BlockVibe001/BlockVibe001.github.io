@@ -82,7 +82,7 @@
       '<div class="ndl-card">' +
         '<div class="ndl-head">' +
           '<div class="ndl-orb"><i></i><i></i><i></i></div>' +
-          '<div><div class="ndl-title">高速下载</div><div class="ndl-sub">星云启动器 1.0.94 · 386 MB · 8 线程加速</div></div>' +
+          '<div><div class="ndl-title">高速下载</div><div class="ndl-sub">星云启动器 · 386 MB · 8 线程加速</div></div>' +
         '</div>' +
         '<div class="ndl-status" aria-live="polite">正在连接高速节点…</div>' +
         '<div class="ndl-bar"><i></i></div>' +
